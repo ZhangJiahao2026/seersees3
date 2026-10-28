@@ -1,0 +1,58 @@
+---
+title: "JahonMusk张珈豪:Most people have always underestimated AI's future power.20261024"
+date: 2026-10-24T21:06:00+08:00
+author: "JahonMusk张珈豪20261024"
+description: "JahonMusk:Most people have always underestimated AI's future power.20261024"
+tags: ["ZhangJiahao","张珈豪","JahonMusk","AI","seersees","article","人工智能","prediction","预言","memoir","回忆录","2026"]
+draft: false
+math: true
+---
+
+2022年春，我在抖音上刷到一个视频。视频内容是展示一个软件功能，我现在称之为马良的神笔——软件中鼠标在空画布下方画了一条水平线，输入“海滩”，水平线下方那部分便出现了沙滩，上半部分是海与天空。他又草草画上几笔轮廓，心形的云、如血的残阳瞬间就出现了。生成的画面十分逼真，沙、海、云、日衔接自然，色彩。要没有心形的云彩，直接把那幅图片直接让我看，我一定会认为这就是用照相机拍的。
+
+Back in spring 2022, I saw a video on Douyin demonstrating a software feature — I now call it Ma Liang's magic brush. A horizontal line was drawn near the bottom of a blank canvas, "beach" was typed in, and the area below became sand while the top became sea and sky. A few quick strokes then produced a heart-shaped cloud and a blood-red setting sun. The image was strikingly realistic — sand, sea, clouds, and sun blending naturally with well-balanced colors. Without that heart-shaped cloud, had you shown me the picture directly, I would have taken it for a photograph.
+
+当时我的世界观直接被冲击了，信仰崩塌了。我从2019年开始对摄影产生兴趣，此后经常在课余时间刷bilibili上和摄影相关的视频。我现在能想起来的就有Links、顾俊、大马猫本、摄影师唐僧、影视飓风。那时的我看到相机就觉得兴奋，看到视频里好看的照片就觉得心灵得到了净化。尤其是Links拍的日本风景照和顾俊拍的Flora_weiii人像照（“我还是忘不掉那个400定下的女人”）。那时常常在网上看到，摄影的尽头就是像“老法师”们（在公园里拿着“长枪大炮”的大爷）讨论着“法兰距”这类专业术语。我还没研究到那一步，2019年的疫情让我走向了另一个方向：编程处理图片，或者用现在我在大学里学习的课程的名称叫“数字图像处理”。这就要从另一个时间点讲起了。
+
+At that moment, my worldview was shaken and my beliefs collapsed. I'd gotten into photography in 2019 and often watched photography videos on Bilibili — Links, Gu Jun, Da Ma Mao Ben, Photographer Tang Seng, and Mediastorm come to mind. Seeing a camera excited me; seeing beautiful photos felt like a purification of the soul. I especially loved Links's Japanese landscapes and Gu Jun's Flora_weiii portraits ("I still can't forget that woman shot with the 400mm prime"). Back then I often saw it said online that photography's endgame is the "old masters" — park grandpas with their "long guns and cannons" discussing jargon like "flange distance." I hadn't gotten there yet. Then the 2019 pandemic steered me elsewhere: programming for image processing — or, as my university course calls it, "Digital Image Processing." But that starts from another point in time.
+
+2018年，我在初中计算机课程中接触到了C语言，这是我第一次接触编程。我记得那时候用的编译器叫“啊哈C”。那时我就感受到了编程的魅力——编程可以帮我做到几乎任何我想做的。虽然当时的我觉得C语言语法晦涩难懂，但还是在心里种下了一颗“我要学编程”的种子。2020年，疫情让我有了上网课的机会，同时让我拥有了一台电脑——我父亲刚买新电脑的一个月后，我们就宣布了在家上网课，父亲本只是把电脑借给我用，后来他也不想再把电脑从我这里拿走，便让我留下了，他又买了一台新的。就是他送我的这台价格3000多元人民币的电脑，为我的人生创造了无法估量的价值。起初我在电脑上下载了啊哈C，想试试编一些复杂的程序，发现编译所花的时间特别长，而且作为一个编程学习软件局限性极强。后来我便在网上摸索，下载了Dev-C++，从网上学了一些基本的语法，靠这些简单的语法完成了一件至今都让我觉得不可思议的作品——课程表.exe，一个集课程表、文字加密解密、查询学号所对应的同学（因为那时很多成绩都是以学号的形式公布，所以会用这个需求）的软件。（讲到这里我想简单说一下，疫情期间我对加密学也产生了浓厚兴趣，但是真正的加密学对那时的我而言过于晦涩难懂，我只是想研究怎么把文字编程大家看不懂的形式然后发给我想发的人。）
+
+In 2018, I first encountered C language in middle school computer class — my first taste of programming. The compiler we used was called "Aha C." I felt programming's charm right away — it could do almost anything I wanted. C syntax seemed obscure to me then, but it still planted a seed: "I want to learn programming." In 2020, the pandemic brought online classes — and a computer. About a month after my dad bought a new computer, we went to online classes from home. He'd only lent it to me at first, but later didn't want to take it back, so he let me keep it and bought another. This computer he gave me — just over 3,000 RMB — created immeasurable value for my life. At first I downloaded Aha C, wanting to write complex programs, but compilation took forever and it was extremely limited as a learning tool. So I explored online, downloaded Dev-C++, learned basic syntax from the internet, and with that simple syntax I made something that still seems unbelievable to me — Class Schedule.exe, software combining a class schedule, text encryption/decryption, and looking up the student corresponding to a student ID (since many grades were posted by student ID back then, so there was a need for it). (Briefly — during the pandemic I also got into cryptography, but real cryptography was too obscure for me then. I just wanted to figure out how to turn text into something nobody could read and send it to whoever I wanted.)
+
+![ Class Schedule.exe 课程表.exe](exe1.png)
+
+![ Class Schedule.exe 课程表.exe](exe2.png)
+
+![ Class Schedule.exe 课程表.exe](exe3.png)
+
+不久后，我就发现了C语言还是太复杂了，用一个叫“python”的编程语言写程序要简单的多，而且可实现的功能更多。过了一年多吧，那时的我已经进化成了一个“爱用编程程序处理照片的摄影师”。可是我不满足于停留在编辑已有的图像，我希望能通过程序创造图像。记得在高中一年级，我就有一段时间天天思考怎么用程序创造图像，吃饭（的时候）想，走路想，跑操想，自习想。经过很长一段时间的苦思冥想依旧没有想到任何可靠思路。现在复盘，当时我没有学习更深入的知识，没有查阅相关资料，甚至研究方向都完全不对，全凭仅有的一点编程知识空想，这是不可能解决问题的。当然，根本原因我认为还是学习能力太差。
+
+Not long after, I realized C was still too complex — Python was much simpler and could do more. About a year later, I'd become "a photographer who loves processing photos with programs." But I wasn't satisfied with editing existing images — I wanted to create images through programming. In my first year of high school, I thought about it every day for a stretch — while eating, walking, doing morning runs, in self-study. After a long time of racking my brain, I still had no reliable approach. In retrospect, I hadn't learned deeper knowledge, hadn't consulted relevant materials, and my direction was completely wrong — just daydreaming with limited programming knowledge. That was never going to solve the problem. The root cause, I think, is simply that my learning ability was too poor.
+
+但是那时的我只认为创造图像这个事是不可能的，或者说想让程序创造任何东西都是不可能的，并且我对此深信不疑。直到我刷到了那个抖音视频，我说“当时我的世界观直接被冲击了，信仰崩塌了。”毫不夸张。那个视频直接让我彻底相信了“程序能够拥有创造图像的能力”。
+
+But back then, I thought creating images was impossible — that making a program create anything at all was impossible — and I believed it firmly. Until I saw that Douyin video, and, as I said, "my worldview was shaken and my beliefs collapsed." No exaggeration. That video made me fully believe that "programs can create images."
+
+2022年秋，课下闲聊时，我听我的同学说他的哥哥在一家叫做“写作猫”的公司上班，说是研究大语言模型。我曾在网上搜索范文时看到过这个网站（在ChatGPT出现前写作文想要找灵感需要在互联网上寻找范文），并且尝试使用过。当然，结果是生成的句子根本不敢写进文章里（太烂了）。不过让我微微震撼地是，好像这个东西确实是在生成句子，或者说创造句子——它写出来的文章都是之前没有过的！虽然我相信“程序能够拥有创造图像的能力”，但年轻幼稚的我还是认为“程序能够拥有掌握语言的能力”几乎是不可能的。
+
+In fall 2022, chatting after class, I heard a classmate say his brother worked at a company called "Xiezuomao," researching large language models. I'd seen that website before while searching for sample essays (before ChatGPT, you had to hunt for samples online for essay inspiration), and I'd tried it. The sentences it generated were too bad to put in an essay — total garbage. But what slightly shook me was that it really did seem to be generating — or creating — sentences: the articles it wrote had never existed before! Even though I believed "programs can create images," young and naive me still thought "programs can master language" was almost impossible.
+
+几个月后，OpenAI发布了ChatGPT。
+
+Months later, OpenAI launched ChatGPT.
+
+我彻底相信了“程序能够拥有一切能力”。不过这次我没有什么“世界观被冲击、信仰崩塌”，那时我已经开始学习股票交易了。我认为“证券交易”这种具有极大不确定性的东西人工智能根本不可能取代。可能它会做的不错，但至少我也能从中分一杯羹，不至于“丢饭碗（失业）”（虽然专职在家交易股票压根就不算有“业（工作）”，失业也就无从谈起了）。之后，经典视频“威尔史密斯吃意大利面”横空出世，大家嘲笑，而我清楚这只是AI拿下视频生成的第一步。我还从一个短视频中听说了“AI的本质就是统计学”。正好那时我刚学完高中生物的“蛋白质”相关知识，我感觉蛋白质结构预测不过是一个特别复杂但又有规律可循的事，特别适合AI这种“高级统计学”来做。当然，有了这个想法的两个周后，我就在bilibili上看到了最新的施一公介绍Alpha Fold的视频。（不过我也是在刚刚（2026年10月25日20点08分北京时间）才知道Alpha Fold在2018年就有了，我以前还一直以为是我刚想到AI适合做蛋白质预测（2022年-2023年间）后这个Alpha Fold就发布了，我一直以为这是个巧合。）
+
+I became fully convinced that "programs can have every ability." But this time, no "worldview shaken, beliefs collapsed" — by then I'd started learning stock trading. I figured AI could never replace something as uncertain as "securities trading." Maybe it'd do well, but at least I could get a piece of the pie — no way I'd be "out of a job (unemployed)" (though trading stocks full-time at home isn't really a "job," so unemployment doesn't even apply). Then the classic "Will Smith eating spaghetti" video appeared; everyone laughed, but I knew it was just AI's first step toward video generation. I also heard from a short video that "the essence of AI is statistics." I'd just finished learning about proteins in high school biology, and I felt protein structure prediction was just an especially complex but rule-governed matter — perfect for AI, this kind of "advanced statistics," to handle. Two weeks after that thought, I saw the latest video on Bilibili of Shi Yigong introducing AlphaFold. (Though I only just learned — at 20:08 Beijing time on October 25, 2026 — that AlphaFold already existed back in 2018. I'd always thought AlphaFold was released right after I first thought of AI being suited for protein prediction, around 2022–2023. I always assumed it was a coincidence.)
+
+2023年冬，我还在用功学习，不仅学高中知识，还学股票、期货、程序化交易的知识。那时身边有同学问我关于高考和大学的意义，我说：“其实我好好学习争取上个好大学并不指望能得个好工作，为了好工作而上好大学是没有意义的，人工智能以后还会让我们有得个好工作的机会吗？（人工智能不会让我们有得个好工作的机会。）我是希望能在好大学里遇到好的人。”这让她们挺诧异的，也许不仅是因为我努力地学习不是为了获得高薪的工作，甚至还对未来的就业市场很悲观。
+
+In winter 2023, I was still studying hard — high school material, plus stocks, futures, and algorithmic trading. Classmates asked me what the point of the college entrance exam and university was, and I said: "Honestly, I'm not studying hard for a good university expecting a good job — going to a good university for a good job is meaningless. Will AI even leave us any chance at a good job in the future? (AI won't leave us any chance at a good job.) What I hope for is to meet good people at a good university." That surprised them — maybe not just because I studied hard for something other than a high-paying job, but also because I was so pessimistic about the future job market.
+
+2024年9月，我进入了中国石油大学。这里有很多人很努力，努力学习专业知识、努力参与学科竞赛、努力积累实习经历，他们希望最终能获得好的工作。
+
+In September 2024, I entered China University of Petroleum. Many here work hard — studying their major, joining academic competitions, building internship experience — all hoping to land a good job in the end.
+
+### 以上内容由JahonMusk张珈豪写于2026-10-24T21:06:00+08:00至2026-10-25T21:25:00+08:00
+### The above content was written by JahonMusk from 2026-10-24T21:06:00+08:00 to 2026-10-25T21:25:00+08:00.
