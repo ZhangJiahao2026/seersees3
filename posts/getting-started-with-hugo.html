@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="my-static-site-builder">
+  <title>Hugo 入门：从零搭建一个 AI 友好的静态博客 · JahonMusk张珈豪-seersees先知先觉网</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="JahonMusk张珈豪-seersees先知先觉网 RSS" href="/rss.xml">
+  <link rel="alternate" type="application/feed+json" title="JahonMusk张珈豪-seersees先知先觉网 JSON Feed" href="/feed.json">
+  <link rel="stylesheet" href="/style.css">
+    <meta name="description" content="Hugo 入门：从零搭建一个 AI 友好的静态博客">
+    <link rel="canonical" href="https://seersees.com/posts/getting-started-with-hugo.html">
+    <meta property="og:site_name" content="JahonMusk张珈豪-seersees先知先觉网">
+    <meta property="og:title" content="Hugo 入门：从零搭建一个 AI 友好的静态博客">
+    <meta property="og:description" content="Hugo 入门：从零搭建一个 AI 友好的静态博客">
+    <meta property="og:url" content="https://seersees.com/posts/getting-started-with-hugo.html">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh-CN">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Hugo 入门：从零搭建一个 AI 友好的静态博客">
+    <meta name="twitter:description" content="Hugo 入门：从零搭建一个 AI 友好的静态博客">
+    <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://seersees.com/"},{"@type":"ListItem","position":2,"name":"test","item":"https://seersees.com/category/test.html"},{"@type":"ListItem","position":3,"name":"Hugo 入门：从零搭建一个 AI 友好的静态博客","item":"https://seersees.com/posts/getting-started-with-hugo.html"}]},{"@context":"https://schema.org","@type":"BlogPosting","headline":"Hugo 入门：从零搭建一个 AI 友好的静态博客","description":"","datePublished":"2026-10-19T10:00:00+08:00","dateModified":"2026-10-19T10:00:00+08:00","author":{"@type":"Person","name":"JahonMusk张珈豪"},"publisher":{"@type":"Organization","name":"JahonMusk张珈豪-seersees先知先觉网","url":"https://seersees.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://seersees.com/posts/getting-started-with-hugo.html"},"articleSection":"test","keywords":"Hugo, PaperMod, Cloudflare Pages, AI 优化, 静态站点"}]</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="/">JahonMusk张珈豪-seersees先知先觉网</a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="/">首页</a>
+        <a href="/category/test.html">test</a>
+        <a href="/category/articles.html">articles</a>
+        <a href="/category/memoirs.html">memoirs</a>
+        <a href="/about.html">关于</a>
+      </nav>
+    </div>
+  </header>
+<main>
+  <article>
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/">首页</a> / <a href="/category/test.html">test</a> / <span>Hugo 入门：从零搭建一个 AI 友好的静态博客</span>
+      </div>
+      <header class="article-header">
+        <h1 class="page-title">Hugo 入门：从零搭建一个 AI 友好的静态博客</h1>
+        <div class="meta">
+          <time datetime="2026-10-19T10:00:00+08:00">2026-10-19T10:00:00+08:00</time>
+          <span>栏目: <a href="/category/test.html">test</a></span>
+          <span class="tags"><span class="tag">Hugo</span><span class="tag">PaperMod</span><span class="tag">Cloudflare Pages</span><span class="tag">AI 优化</span><span class="tag">静态站点</span></span>
+        </div>
+      </header>
+      <div class="article-body">
+<h2>为什么选 Hugo？</h2>
+<p>Hugo 是目前最轻量、构建速度最快的静态站点生成器之一。一个中等规模的博客（几百篇文章），Hugo 可以在<strong>几百毫秒</strong>内完成构建，对比 Jekyll（几秒）、Next.js（几十秒到几分钟），优势非常明显。</p>
+<p>结合 <strong>PaperMod</strong> 主题和 <strong>Cloudflare Pages</strong> 的免费全球 CDN 部署方案，你可以在 10 分钟内上线一个自己的博客。</p>
+<p><img src="https://gohugo.io/images/hugo-logo-wide.svg &quot;Hugo 官方 Logo&quot;" alt="Hugo Logo" loading="lazy"></p>
+<h2>本文目标</h2>
+<p>读完本文，你将获得：</p>
+<ol><li>✅ 完整的项目源码（Hugo + PaperMod）</li><li>✅ 开箱即用的 <strong>config.yml</strong> 配置</li><li>✅ 面向 AI 大模型的 <strong>JSON-LD 结构化数据</strong>、<strong>llms.txt</strong>、<strong>robots.txt</strong></li><li>✅ Cloudflare Pages 一键部署参数</li><li>✅ 完整的 Markdown 发文工作流</li></ol>
+<h2>目录结构约定（Hugo Page Bundle）</h2>
+<p>Hugo 推荐使用 <strong>Page Bundle（页面包）</strong> 模式管理文章。每篇文章是一个独立文件夹，Markdown 和配图放在一起：</p>
+<pre><code>content/posts/
+├── my-first-article/
+│   ├── index.md          # 文章正文
+│   ├── cover.svg         # 封面图（小驼峰命名）
+│   └── diagram.png       # 正文配图
+└── another-article/
+    ├── index.md
+    └── images/
+        ├── screenshot-1.jpg
+        └── screenshot-2.jpg</code></pre>
+<p>这样做的好处：</p>
+<ul><li>图片和文章永远在一起，删除文章不会遗漏图片</li><li>Markdown 里用相对路径引用图片，移动目录也不怕</li><li>Hugo 会自动把同目录下的图片识别为 <strong>Page Resources</strong>，供模板使用</li></ul>
+<h2>Markdown 写作示例</h2>
+<h3>Front Matter 模板</h3>
+<p>每篇文章的 <code>index.md</code> 顶部必须包含 YAML Front Matter（在 <code>---</code> 分隔线之间）：</p>
+<pre><code class="language-yaml">---
+title: &quot;文章标题&quot;
+date: 2026-10-19T10:00:00+08:00
+author: &quot;作者名&quot;
+description: &quot;一句话摘要，用于 OG、JSON-LD、SEO 描述&quot;
+tags: [&quot;标签一&quot;, &quot;标签二&quot;]
+draft: false
+cover:
+  image: &quot;cover.svg&quot;
+  relative: true
+---</code></pre>
+<h3>图片的 alt 和 caption</h3>
+<p>无障碍访问（a11y）和 AI 爬虫都依赖图片的 <strong>alt 文本</strong>。Hugo 支持两种方式插入图片：</p>
+<h4>方式一：纯 Markdown 语法（简单插图）</h4>
+<pre><code class="language-markdown">![这是一张示意图](diagram.png &quot;图片标题（可选）&quot;)</code></pre>
+<p>输出效果：</p>
+<blockquote>Hugo 的 render-image.html 会自动把 alt 文本渲染为 <code>&lt;img alt=&quot;...&quot;&gt;</code>。</blockquote>
+<h4>方式二：figure shortcode（带 caption 图注）</h4>
+<pre><code class="language-markdown">{{&lt;/* figure src=&quot;screenshot-1.jpg&quot; alt=&quot;Cloudflare Pages 构建日志截图&quot; caption=&quot;图 1：Cloudflare Pages 上一次构建成功&quot; */&gt;}}</code></pre>
+<p>输出效果：</p>
+<p>{{< figure src="/assets/getting-started-with-hugo/cover.svg" alt="Hugo 博客封面图，橙紫渐变背景" caption="图 1：本文封面图（SVG 矢量图，可任意缩放）" >}}</p>
+<h3>标题层级（H1 → H2 → H3）</h3>
+<p>HTML 语义化对 SEO 和 AI 爬虫至关重要：</p>
+<ul><li><strong>H1</strong>（<code># 标题</code>）：每篇文章只有一个，就是 <code>title</code> Front Matter</li><li><strong>H2</strong>（<code>## 标题</code>）：文章的大章节标题</li><li><strong>H3</strong>（<code>### 标题</code>）：子章节标题</li><li>不要跳过层级（比如从 H2 直接跳到 H4）</li></ul>
+<blockquote>主题的 anchored_headings 会自动给每个标题加锚点，方便目录（TOC）生成。</blockquote>
+<h2>AI 爬虫优化清单</h2>
+<h3>1. llms.txt（专门给大模型读的站点目录）</h3>
+<p>站点根目录的 <code>llms.txt</code> 会被 <strong>所有主流 AI 爬虫</strong> 优先读取（OpenAI 的 GPTBot、Anthropic 的 ClaudeBot、Google-Extended、Perplexity 等），它告诉 AI：</p>
+<blockquote>「这个网站有哪些页面、每个页面讲什么」</blockquote>
+<p>我们的模板会自动递归所有 section，输出格式化的页面列表 + 描述摘要。</p>
+<h3>2. JSON-LD 结构化数据</h3>
+<p>每篇文章的 <code>&lt;head&gt;</code> 里会自动注入 <code>BlogPosting</code> schema：</p>
+<pre><code class="language-json">{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;BlogPosting&quot;,
+  &quot;headline&quot;: &quot;Hugo 入门：从零搭建一个 AI 友好的静态博客&quot;,
+  &quot;author&quot;: { &quot;@type&quot;: &quot;Person&quot;, &quot;name&quot;: &quot;作者名&quot; },
+  &quot;datePublished&quot;: &quot;2026-10-19T10:00:00+08:00&quot;,
+  &quot;articleBody&quot;: &quot;... 完整正文 ...&quot;,
+  &quot;mainEntityOfPage&quot;: { &quot;@type&quot;: &quot;WebPage&quot;, &quot;@id&quot;: &quot;https://...&quot; }
+}</code></pre>
+<h3>3. robots.txt 全放行</h3>
+<pre><code>User-agent: GPTBot        Allow: /
+User-agent: ClaudeBot     Allow: /
+User-agent: CCBot        Allow: /
+...
+User-agent: *             Allow: /</code></pre>
+<h3>4. canonical / OG / 语义化 HTML</h3>
+<ul><li>每页都有唯一的 <code>&lt;link rel=&quot;canonical&quot;&gt;</code></li><li>每篇文章都有 <code>og:title</code> / <code>og:image</code> / <code>article:published_time</code></li><li>正文直接渲染在 HTML 里，<strong>没有 JS 动态加载的文字</strong></li><li>所有图片都有 alt 文本（Markdown alt 属性或 figure shortcode）</li></ul>
+<h2>Cloudflare Pages 部署参数</h2>
+<p>在 Cloudflare Pages 新建项目时填写：</p>
+<p>| 项目 | 值 | |---|---| | Production branch | <code>main</code> | | Build command | <code>hugo</code> | | Build output directory | <code>public</code> | | 环境变量 <code>HUGO_VERSION</code> | <code>&quot;0.134.0&quot;</code> |</p>
+<h2>总结</h2>
+<p>Hugo + PaperMod + Cloudflare Pages 的组合，是目前技术博客领域最轻量、部署成本最低的方案之一。配合 llms.txt 和 JSON-LD 结构化数据，你的文章会被越来越多的 AI Agent 发现和引用。</p>
+<blockquote>📖 想深入了解？请看本站首页的完整文章列表。</blockquote>
+
+      </div>
+    <nav class="article-nav" aria-label="文章导航">
+      <span></span>
+      <a href="/posts/first-post.html" rel="next">ZhangJiahao&#39;s first post 张珈豪的第一个推送 →</a>
+    </nav>
+    </div>
+  </article>
+</main>
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 JahonMusk张珈豪. 保留所有权利。</span>
+      <span>
+        <a href="/rss.xml">RSS</a> ·
+        <a href="/feed.json">JSON Feed</a> ·
+        <a href="/llms.txt">LLMs.txt</a> ·
+        <a href="/sitemap.xml">Sitemap</a>
+      </span>
+    </div>
+  </footer>
+</body>
+</html>

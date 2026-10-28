@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="my-static-site-builder">
+  <title>图片示例：三种写法都能显示 · JahonMusk张珈豪-seersees先知先觉网</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="JahonMusk张珈豪-seersees先知先觉网 RSS" href="/rss.xml">
+  <link rel="alternate" type="application/feed+json" title="JahonMusk张珈豪-seersees先知先觉网 JSON Feed" href="/feed.json">
+  <link rel="stylesheet" href="/style.css">
+    <meta name="description" content="演示本地图片、子目录图片、外链图片三种写法，以及 build.js 如何自动规整路径。">
+    <link rel="canonical" href="https://seersees.com/posts/image-demo.html">
+    <meta property="og:site_name" content="JahonMusk张珈豪-seersees先知先觉网">
+    <meta property="og:title" content="图片示例：三种写法都能显示">
+    <meta property="og:description" content="演示本地图片、子目录图片、外链图片三种写法，以及 build.js 如何自动规整路径。">
+    <meta property="og:url" content="https://seersees.com/posts/image-demo.html">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh-CN">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="图片示例：三种写法都能显示">
+    <meta name="twitter:description" content="演示本地图片、子目录图片、外链图片三种写法，以及 build.js 如何自动规整路径。">
+    <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://seersees.com/"},{"@type":"ListItem","position":2,"name":"test","item":"https://seersees.com/category/test.html"},{"@type":"ListItem","position":3,"name":"图片示例：三种写法都能显示","item":"https://seersees.com/posts/image-demo.html"}]},{"@context":"https://schema.org","@type":"BlogPosting","headline":"图片示例：三种写法都能显示","description":"演示本地图片、子目录图片、外链图片三种写法，以及 build.js 如何自动规整路径。","datePublished":"2026-10-27","dateModified":"2026-10-27","author":{"@type":"Person","name":"JahonMusk张珈豪"},"publisher":{"@type":"Organization","name":"JahonMusk张珈豪-seersees先知先觉网","url":"https://seersees.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://seersees.com/posts/image-demo.html"},"articleSection":"test","keywords":"图片, 教程"}]</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="/">JahonMusk张珈豪-seersees先知先觉网</a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="/">首页</a>
+        <a href="/category/test.html">test</a>
+        <a href="/category/articles.html">articles</a>
+        <a href="/category/memoirs.html">memoirs</a>
+        <a href="/about.html">关于</a>
+      </nav>
+    </div>
+  </header>
+<main>
+  <article>
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/">首页</a> / <a href="/category/test.html">test</a> / <span>图片示例：三种写法都能显示</span>
+      </div>
+      <header class="article-header">
+        <h1 class="page-title">图片示例：三种写法都能显示</h1>
+        <div class="meta">
+          <time datetime="2026-10-27">2026年10月27日</time>
+          <span>栏目: <a href="/category/test.html">test</a></span>
+          <span class="tags"><span class="tag">图片</span><span class="tag">教程</span></span>
+        </div>
+      </header>
+      <div class="article-body">
+<h2>封面图（相对路径）</h2>
+<p><img src="/assets/image-demo/banner.svg" alt="封面大图" loading="lazy"></p>
+<blockquote>直接写相对路径 <code>banner.svg</code>，构建脚本会自动规整成 <code>/assets/image-demo/banner.svg</code>（站点根绝对路径），<strong>首页 <code>/</code> 和文章页 <code>/posts/image-demo.html</code> 都能正确加载</strong>，永远不会有相对路径算不准的问题。</blockquote>
+<h2>子目录图片（保留目录结构）</h2>
+<p><img src="/assets/image-demo/2026/coffee.svg" alt="一杯咖啡" loading="lazy"></p>
+<blockquote>子目录路径保留，构建后也是 <code>/assets/image-demo/2026/coffee.svg</code>。 你的资源目录长什么样，站点上就长什么样，一目了然。</blockquote>
+<h2>外链图片</h2>
+<p><img src="https://placekitten.com/640/320" alt="在线占位图" loading="lazy"></p>
+<blockquote>外链 URL 原样保留，不会被改写。</blockquote>
+<h2>图注（figure + figcaption）</h2>
+<p>也可以在 <code>&lt;figure&gt;</code> 里套图片 + <code>&lt;figcaption&gt;</code>，CSS 会自动让它变小变灰：</p>
+<p><figure>   <img src="/assets/image-demo/banner.svg" alt="banner">   <figcaption>这是一行图注。用相对路径 ./banner.svg 也能正常加载。</figcaption> </figure></p>
+
+      </div>
+    <nav class="article-nav" aria-label="文章导航">
+      <a href="/posts/hello-world.html" rel="prev">← Hello, World —— 我的第一篇文章</a>
+      <a href="/posts/static-site.html" rel="next">静态站点生成器最小实现 →</a>
+    </nav>
+    </div>
+  </article>
+</main>
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 JahonMusk张珈豪. 保留所有权利。</span>
+      <span>
+        <a href="/rss.xml">RSS</a> ·
+        <a href="/feed.json">JSON Feed</a> ·
+        <a href="/llms.txt">LLMs.txt</a> ·
+        <a href="/sitemap.xml">Sitemap</a>
+      </span>
+    </div>
+  </footer>
+</body>
+</html>

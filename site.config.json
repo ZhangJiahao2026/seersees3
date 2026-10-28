@@ -1,0 +1,55 @@
+{
+  "site": {
+    "name": "JahonMusk张珈豪-seersees先知先觉网",
+    "description": "JahonMusk张珈豪's predictions,articles,memoirs",
+    "url": "https://seersees.com/",
+    "author": "JahonMusk张珈豪",
+    "language": "zh-CN",
+    "copyright": "© 2026 JahonMusk张珈豪. 保留所有权利。",
+    "favicon": "/favicon.svg"
+  },
+  "nav": [
+    {
+      "label": "首页",
+      "href": "/"
+    },
+    {
+      "label": "test",
+      "href": "/category/test.html"
+    },
+    {
+      "label": "articles",
+      "href": "/category/articles.html"
+    },
+    {
+      "label": "memoirs",
+      "href": "/category/memoirs.html"
+    },
+    {
+      "label": "关于",
+      "href": "/about.html"
+    }
+  ],
+  "categories": [
+    {
+      "slug": "test",
+      "name": "test",
+      "description": "test"
+    },
+    {
+      "slug": "memoirs",
+      "name": "memoirs",
+      "description": "memoirs"
+    },
+    {
+      "slug": "articles",
+      "name": "articles",
+      "description": "articles"
+    }
+  ],
+  "feed": {
+    "rssPath": "/rss.xml",
+    "jsonPath": "/feed.json",
+    "llmsPath": "/llms.txt"
+  }
+}

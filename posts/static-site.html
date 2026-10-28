@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="my-static-site-builder">
+  <title>静态站点生成器最小实现 · JahonMusk张珈豪-seersees先知先觉网</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" type="application/rss+xml" title="JahonMusk张珈豪-seersees先知先觉网 RSS" href="/rss.xml">
+  <link rel="alternate" type="application/feed+json" title="JahonMusk张珈豪-seersees先知先觉网 JSON Feed" href="/feed.json">
+  <link rel="stylesheet" href="/style.css">
+    <meta name="description" content="不依赖任何第三方包，只用 Node.js 内置模块实现一个 Markdown → HTML 的构建脚本。">
+    <link rel="canonical" href="https://seersees.com/posts/static-site.html">
+    <meta property="og:site_name" content="JahonMusk张珈豪-seersees先知先觉网">
+    <meta property="og:title" content="静态站点生成器最小实现">
+    <meta property="og:description" content="不依赖任何第三方包，只用 Node.js 内置模块实现一个 Markdown → HTML 的构建脚本。">
+    <meta property="og:url" content="https://seersees.com/posts/static-site.html">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh-CN">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="静态站点生成器最小实现">
+    <meta name="twitter:description" content="不依赖任何第三方包，只用 Node.js 内置模块实现一个 Markdown → HTML 的构建脚本。">
+    <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://seersees.com/"},{"@type":"ListItem","position":2,"name":"test","item":"https://seersees.com/category/test.html"},{"@type":"ListItem","position":3,"name":"静态站点生成器最小实现","item":"https://seersees.com/posts/static-site.html"}]},{"@context":"https://schema.org","@type":"BlogPosting","headline":"静态站点生成器最小实现","description":"不依赖任何第三方包，只用 Node.js 内置模块实现一个 Markdown → HTML 的构建脚本。","datePublished":"2026-10-27","dateModified":"2026-10-27","author":{"@type":"Person","name":"JahonMusk张珈豪"},"publisher":{"@type":"Organization","name":"JahonMusk张珈豪-seersees先知先觉网","url":"https://seersees.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://seersees.com/posts/static-site.html"},"articleSection":"test","keywords":"静态站点, node, 实现"}]</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-title" href="/">JahonMusk张珈豪-seersees先知先觉网</a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="/">首页</a>
+        <a href="/category/test.html">test</a>
+        <a href="/category/articles.html">articles</a>
+        <a href="/category/memoirs.html">memoirs</a>
+        <a href="/about.html">关于</a>
+      </nav>
+    </div>
+  </header>
+<main>
+  <article>
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/">首页</a> / <a href="/category/test.html">test</a> / <span>静态站点生成器最小实现</span>
+      </div>
+      <header class="article-header">
+        <h1 class="page-title">静态站点生成器最小实现</h1>
+        <div class="meta">
+          <time datetime="2026-10-27">2026年10月27日</time>
+          <span>栏目: <a href="/category/test.html">test</a></span>
+          <span class="tags"><span class="tag">静态站点</span><span class="tag">node</span><span class="tag">实现</span></span>
+        </div>
+      </header>
+      <div class="article-body">
+<h2>目标</h2>
+<p>写一个<strong>零依赖</strong>的 <code>build.js</code>，能够：</p>
+<ul><li>解析 Markdown front matter（<code>---</code> 包裹的 YAML 片段）。</li><li>把常用 Markdown 语法渲染成 HTML。</li><li>套上统一的 HTML 模板（包含 SEO / Open Graph / JSON-LD）。</li><li>自动生成首页、栏目页、RSS、sitemap。</li></ul>
+<h2>Front matter 解析</h2>
+<p>用一个简单的正则分割 front matter 和正文：</p>
+<pre><code class="language-js">const fmRe = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;</code></pre>
+<p>然后逐行解析字段，数组字段（<code>tags</code>）用 <code>[...]</code> 或逗号分隔。</p>
+<h2>Markdown 渲染</h2>
+<p>支持的语法：</p>
+<p>| 语法 | 说明 | |------|------| | <code>#</code> / <code>##</code> / <code>###</code> | 标题 | | <code><strong>bold</strong></code> / <code><em>italic</em></code> | 强调 | | `<code> </code>code<code> </code><code> | 行内代码 | | </code>``<code> </code>`<code>lang </code>``<code> | 代码块 | | </code>- item<code> | 无序列表 | | </code>1. item<code> | 有序列表 | | </code><a href="/assets/static-site/url">text</a><code> | 链接 | | </code><img src="/assets/static-site/src" alt="alt" loading="lazy"><code> | 图片 | | </code>> quote` | 引用 |</p>
+<p>够用就行，不需要把 CommonMark 的每一个角落都实现。</p>
+<h2>模板组合</h2>
+<p>每一页都先调用一个 <code>layout(title, meta, body, config)</code> 函数，统一输出 <code>&lt;!doctype html&gt;</code> 到 <code>&lt;/html&gt;</code>。文章页额外注入 <code>BlogPosting</code> 结构化数据，首页注入 <code>Blog</code>。</p>
+<h2>性能</h2>
+<p>3 篇文章的构建时间在 10ms 以内。即使文章数涨到几百篇，单次构建也不会超过一秒。</p>
+<h2>为什么不引入 marked.js</h2>
+<p>引入之后，构建时间不会显著缩短，但依赖数会变成 1（再加传递依赖），"复制粘贴就能跑"这件事就被破坏了。<strong>对一个小站来说，零依赖的可读性比功能完备更重要。</strong></p>
+<p>如果你确实需要更复杂的 Markdown 特性（表格、任务列表、脚注），把 <code>renderMarkdown</code> 函数换成 marked 的调用也只需要改几行。</p>
+
+      </div>
+    <nav class="article-nav" aria-label="文章导航">
+      <a href="/posts/image-demo.html" rel="prev">← 图片示例：三种写法都能显示</a>
+      <a href="/posts/weekend-notes.html" rel="next">周末笔记：一杯咖啡和一个待办 →</a>
+    </nav>
+    </div>
+  </article>
+</main>
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 JahonMusk张珈豪. 保留所有权利。</span>
+      <span>
+        <a href="/rss.xml">RSS</a> ·
+        <a href="/feed.json">JSON Feed</a> ·
+        <a href="/llms.txt">LLMs.txt</a> ·
+        <a href="/sitemap.xml">Sitemap</a>
+      </span>
+    </div>
+  </footer>
+</body>
+</html>

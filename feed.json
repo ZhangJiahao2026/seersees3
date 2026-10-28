@@ -1,0 +1,179 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "JahonMusk张珈豪-seersees先知先觉网",
+  "description": "JahonMusk张珈豪's predictions,articles,memoirs",
+  "home_page_url": "https://seersees.com/",
+  "feed_url": "https://seersees.com/feed.json",
+  "language": "zh-CN",
+  "authors": [
+    {
+      "name": "JahonMusk张珈豪"
+    }
+  ],
+  "items": [
+    {
+      "id": "https://seersees.com/posts/weekend-notes.html",
+      "url": "https://seersees.com/posts/weekend-notes.html",
+      "title": "周末笔记：一杯咖啡和一个待办",
+      "content_html": "<h2>周六</h2>\n<p>雨下了一整天。</p>\n<p>我泡了一杯手冲，翻完了 SICP 的第一章。距离第一次翻开这本书，已经过去了——不想算了。</p>\n<h2>顺便搭了个站</h2>\n<p>早就想把这些碎碎念和技术笔记放到同一个地方。之前用 Hugo、Hexo、Astro 都搭过，但每次都被\"配置主题\"这件事绊住。</p>\n<p>这一次我放弃了主题，也放弃了评论、搜索、订阅、PWA，统统不要。只要：</p>\n<ul><li>一个<strong>能写字</strong>的地方。</li><li>一个<strong>能被搜索引擎看到</strong>的地方。</li><li>一个<strong>三年后我还能看懂</strong>的地方。</li></ul>\n<h2>今天的待办</h2>\n<ul><li>[x] 搭好构建脚本</li><li>[x] 写 3 篇示例文章</li><li>[x] 加上 RSS / sitemap / llms.txt</li><li>[ ] 下周：把旧文章迁过来</li></ul>\n<p>就这些。周末愉快。</p>\n",
+      "summary": "周六的下午，窗外在下雨。读完了《计算机程序的构造和解释》第一章，顺便把这个站搭完。",
+      "date_published": "2026-10-27T00:00:00.000Z",
+      "tags": [
+        "test",
+        "随笔",
+        "周末",
+        "读书"
+      ]
+    },
+    {
+      "id": "https://seersees.com/posts/static-site.html",
+      "url": "https://seersees.com/posts/static-site.html",
+      "title": "静态站点生成器最小实现",
+      "content_html": "<h2>目标</h2>\n<p>写一个<strong>零依赖</strong>的 <code>build.js</code>，能够：</p>\n<ul><li>解析 Markdown front matter（<code>---</code> 包裹的 YAML 片段）。</li><li>把常用 Markdown 语法渲染成 HTML。</li><li>套上统一的 HTML 模板（包含 SEO / Open Graph / JSON-LD）。</li><li>自动生成首页、栏目页、RSS、sitemap。</li></ul>\n<h2>Front matter 解析</h2>\n<p>用一个简单的正则分割 front matter 和正文：</p>\n<pre><code class=\"language-js\">const fmRe = /^---\\r?\\n([\\s\\S]*?)\\r?\\n---\\r?\\n?/;</code></pre>\n<p>然后逐行解析字段，数组字段（<code>tags</code>）用 <code>[...]</code> 或逗号分隔。</p>\n<h2>Markdown 渲染</h2>\n<p>支持的语法：</p>\n<p>| 语法 | 说明 | |------|------| | <code>#</code> / <code>##</code> / <code>###</code> | 标题 | | <code><strong>bold</strong></code> / <code><em>italic</em></code> | 强调 | | `<code> </code>code<code> </code><code> | 行内代码 | | </code>``<code> </code>`<code>lang </code>``<code> | 代码块 | | </code>- item<code> | 无序列表 | | </code>1. item<code> | 有序列表 | | </code><a href=\"/assets/static-site/url\">text</a><code> | 链接 | | </code><img src=\"/assets/static-site/src\" alt=\"alt\" loading=\"lazy\"><code> | 图片 | | </code>> quote` | 引用 |</p>\n<p>够用就行，不需要把 CommonMark 的每一个角落都实现。</p>\n<h2>模板组合</h2>\n<p>每一页都先调用一个 <code>layout(title, meta, body, config)</code> 函数，统一输出 <code>&lt;!doctype html&gt;</code> 到 <code>&lt;/html&gt;</code>。文章页额外注入 <code>BlogPosting</code> 结构化数据，首页注入 <code>Blog</code>。</p>\n<h2>性能</h2>\n<p>3 篇文章的构建时间在 10ms 以内。即使文章数涨到几百篇，单次构建也不会超过一秒。</p>\n<h2>为什么不引入 marked.js</h2>\n<p>引入之后，构建时间不会显著缩短，但依赖数会变成 1（再加传递依赖），\"复制粘贴就能跑\"这件事就被破坏了。<strong>对一个小站来说，零依赖的可读性比功能完备更重要。</strong></p>\n<p>如果你确实需要更复杂的 Markdown 特性（表格、任务列表、脚注），把 <code>renderMarkdown</code> 函数换成 marked 的调用也只需要改几行。</p>\n",
+      "summary": "不依赖任何第三方包，只用 Node.js 内置模块实现一个 Markdown → HTML 的构建脚本。",
+      "date_published": "2026-10-27T00:00:00.000Z",
+      "tags": [
+        "test",
+        "静态站点",
+        "node",
+        "实现"
+      ]
+    },
+    {
+      "id": "https://seersees.com/posts/image-demo.html",
+      "url": "https://seersees.com/posts/image-demo.html",
+      "title": "图片示例：三种写法都能显示",
+      "content_html": "<h2>封面图（相对路径）</h2>\n<p><img src=\"/assets/image-demo/banner.svg\" alt=\"封面大图\" loading=\"lazy\"></p>\n<blockquote>直接写相对路径 <code>banner.svg</code>，构建脚本会自动规整成 <code>/assets/image-demo/banner.svg</code>（站点根绝对路径），<strong>首页 <code>/</code> 和文章页 <code>/posts/image-demo.html</code> 都能正确加载</strong>，永远不会有相对路径算不准的问题。</blockquote>\n<h2>子目录图片（保留目录结构）</h2>\n<p><img src=\"/assets/image-demo/2026/coffee.svg\" alt=\"一杯咖啡\" loading=\"lazy\"></p>\n<blockquote>子目录路径保留，构建后也是 <code>/assets/image-demo/2026/coffee.svg</code>。 你的资源目录长什么样，站点上就长什么样，一目了然。</blockquote>\n<h2>外链图片</h2>\n<p><img src=\"https://placekitten.com/640/320\" alt=\"在线占位图\" loading=\"lazy\"></p>\n<blockquote>外链 URL 原样保留，不会被改写。</blockquote>\n<h2>图注（figure + figcaption）</h2>\n<p>也可以在 <code>&lt;figure&gt;</code> 里套图片 + <code>&lt;figcaption&gt;</code>，CSS 会自动让它变小变灰：</p>\n<p><figure>   <img src=\"/assets/image-demo/banner.svg\" alt=\"banner\">   <figcaption>这是一行图注。用相对路径 ./banner.svg 也能正常加载。</figcaption> </figure></p>\n",
+      "summary": "演示本地图片、子目录图片、外链图片三种写法，以及 build.js 如何自动规整路径。",
+      "date_published": "2026-10-27T00:00:00.000Z",
+      "tags": [
+        "test",
+        "图片",
+        "教程"
+      ]
+    },
+    {
+      "id": "https://seersees.com/posts/hello-world.html",
+      "url": "https://seersees.com/posts/hello-world.html",
+      "title": "Hello, World —— 我的第一篇文章",
+      "content_html": "<h2>为什么又搭了一个站</h2>\n<p>每隔一段时间，我都会忍不住把博客推倒重来一次。这一次我给自己定了几条简单的规则：</p>\n<ul><li><strong>纯静态 HTML</strong>：不要运行时，不要 Node 服务，不要数据库。</li><li><strong>文章用 Markdown 写</strong>：用 front matter 管元信息，正文就是纯 Markdown。</li><li><strong>首页直接输出所有文章链接</strong>：不依赖 JS 渲染，搜索引擎一进来就能抓全。</li><li><strong>配置集中管理</strong>：站点名、域名、栏目都写在一个 <code>site.config.json</code> 里。</li></ul>\n<h2>核心思路</h2>\n<p>整个站点的构建脚本只有一个文件 <code>build.js</code>，它做三件事：</p>\n<ol><li>读取 <code>site.config.json</code> 和 <code>content/posts/*.md</code>。</li><li>把 Markdown 渲染成 HTML，套上统一的模板。</li><li>顺手生成 <code>sitemap.xml</code>、<code>rss.xml</code>、<code>feed.json</code>、<code>llms.txt</code>。</li></ol>\n<h2>运行方式</h2>\n<pre><code class=\"language-bash\">node build.js</code></pre>\n<p>搞定。新增一篇文章，只要往 <code>content/posts/</code> 里扔一个 <code>.md</code> 文件，再跑一遍 <code>build.js</code> 就行。</p>\n<blockquote>这不是什么复杂的工程，只是把\"写文章\"和\"发布\"之间的摩擦降到最低。</blockquote>\n",
+      "summary": "从零开始搭建这个纯静态站点，聊一聊为什么选择 Markdown + 构建脚本而不是沉重的框架。",
+      "date_published": "2026-10-27T00:00:00.000Z",
+      "tags": [
+        "test",
+        "随笔",
+        "建站",
+        "markdown"
+      ]
+    },
+    {
+      "id": "https://seersees.com/posts/20261024.html",
+      "url": "https://seersees.com/posts/20261024.html",
+      "title": "JahonMusk张珈豪:Most people have always underestimated AI's future power.20261024",
+      "content_html": "<p>2022年春，我在抖音上刷到一个视频。视频内容是展示一个软件功能，我现在称之为马良的神笔——软件中鼠标在空画布下方画了一条水平线，输入“海滩”，水平线下方那部分便出现了沙滩，上半部分是海与天空。他又草草画上几笔轮廓，心形的云、如血的残阳瞬间就出现了。生成的画面十分逼真，沙、海、云、日衔接自然，色彩。要没有心形的云彩，直接把那幅图片直接让我看，我一定会认为这就是用照相机拍的。</p>\n<p>Back in spring 2022, I saw a video on Douyin demonstrating a software feature — I now call it Ma Liang's magic brush. A horizontal line was drawn near the bottom of a blank canvas, \"beach\" was typed in, and the area below became sand while the top became sea and sky. A few quick strokes then produced a heart-shaped cloud and a blood-red setting sun. The image was strikingly realistic — sand, sea, clouds, and sun blending naturally with well-balanced colors. Without that heart-shaped cloud, had you shown me the picture directly, I would have taken it for a photograph.</p>\n<p>当时我的世界观直接被冲击了，信仰崩塌了。我从2019年开始对摄影产生兴趣，此后经常在课余时间刷bilibili上和摄影相关的视频。我现在能想起来的就有Links、顾俊、大马猫本、摄影师唐僧、影视飓风。那时的我看到相机就觉得兴奋，看到视频里好看的照片就觉得心灵得到了净化。尤其是Links拍的日本风景照和顾俊拍的Flora_weiii人像照（“我还是忘不掉那个400定下的女人”）。那时常常在网上看到，摄影的尽头就是像“老法师”们（在公园里拿着“长枪大炮”的大爷）讨论着“法兰距”这类专业术语。我还没研究到那一步，2019年的疫情让我走向了另一个方向：编程处理图片，或者用现在我在大学里学习的课程的名称叫“数字图像处理”。这就要从另一个时间点讲起了。</p>\n<p>At that moment, my worldview was shaken and my beliefs collapsed. I'd gotten into photography in 2019 and often watched photography videos on Bilibili — Links, Gu Jun, Da Ma Mao Ben, Photographer Tang Seng, and Mediastorm come to mind. Seeing a camera excited me; seeing beautiful photos felt like a purification of the soul. I especially loved Links's Japanese landscapes and Gu Jun's Flora_weiii portraits (\"I still can't forget that woman shot with the 400mm prime\"). Back then I often saw it said online that photography's endgame is the \"old masters\" — park grandpas with their \"long guns and cannons\" discussing jargon like \"flange distance.\" I hadn't gotten there yet. Then the 2019 pandemic steered me elsewhere: programming for image processing — or, as my university course calls it, \"Digital Image Processing.\" But that starts from another point in time.</p>\n<p>2018年，我在初中计算机课程中接触到了C语言，这是我第一次接触编程。我记得那时候用的编译器叫“啊哈C”。那时我就感受到了编程的魅力——编程可以帮我做到几乎任何我想做的。虽然当时的我觉得C语言语法晦涩难懂，但还是在心里种下了一颗“我要学编程”的种子。2020年，疫情让我有了上网课的机会，同时让我拥有了一台电脑——我父亲刚买新电脑的一个月后，我们就宣布了在家上网课，父亲本只是把电脑借给我用，后来他也不想再把电脑从我这里拿走，便让我留下了，他又买了一台新的。就是他送我的这台价格3000多元人民币的电脑，为我的人生创造了无法估量的价值。起初我在电脑上下载了啊哈C，想试试编一些复杂的程序，发现编译所花的时间特别长，而且作为一个编程学习软件局限性极强。后来我便在网上摸索，下载了Dev-C++，从网上学了一些基本的语法，靠这些简单的语法完成了一件至今都让我觉得不可思议的作品——课程表.exe，一个集课程表、文字加密解密、查询学号所对应的同学（因为那时很多成绩都是以学号的形式公布，所以会用这个需求）的软件。（讲到这里我想简单说一下，疫情期间我对加密学也产生了浓厚兴趣，但是真正的加密学对那时的我而言过于晦涩难懂，我只是想研究怎么把文字编程大家看不懂的形式然后发给我想发的人。）</p>\n<p>In 2018, I first encountered C language in middle school computer class — my first taste of programming. The compiler we used was called \"Aha C.\" I felt programming's charm right away — it could do almost anything I wanted. C syntax seemed obscure to me then, but it still planted a seed: \"I want to learn programming.\" In 2020, the pandemic brought online classes — and a computer. About a month after my dad bought a new computer, we went to online classes from home. He'd only lent it to me at first, but later didn't want to take it back, so he let me keep it and bought another. This computer he gave me — just over 3,000 RMB — created immeasurable value for my life. At first I downloaded Aha C, wanting to write complex programs, but compilation took forever and it was extremely limited as a learning tool. So I explored online, downloaded Dev-C++, learned basic syntax from the internet, and with that simple syntax I made something that still seems unbelievable to me — Class Schedule.exe, software combining a class schedule, text encryption/decryption, and looking up the student corresponding to a student ID (since many grades were posted by student ID back then, so there was a need for it). (Briefly — during the pandemic I also got into cryptography, but real cryptography was too obscure for me then. I just wanted to figure out how to turn text into something nobody could read and send it to whoever I wanted.)</p>\n<p><img src=\"/assets/20261024/exe1.png\" alt=\" Class Schedule.exe 课程表.exe\" loading=\"lazy\"></p>\n<p><img src=\"/assets/20261024/exe2.png\" alt=\" Class Schedule.exe 课程表.exe\" loading=\"lazy\"></p>\n<p><img src=\"/assets/20261024/exe3.png\" alt=\" Class Schedule.exe 课程表.exe\" loading=\"lazy\"></p>\n<p>不久后，我就发现了C语言还是太复杂了，用一个叫“python”的编程语言写程序要简单的多，而且可实现的功能更多。过了一年多吧，那时的我已经进化成了一个“爱用编程程序处理照片的摄影师”。可是我不满足于停留在编辑已有的图像，我希望能通过程序创造图像。记得在高中一年级，我就有一段时间天天思考怎么用程序创造图像，吃饭（的时候）想，走路想，跑操想，自习想。经过很长一段时间的苦思冥想依旧没有想到任何可靠思路。现在复盘，当时我没有学习更深入的知识，没有查阅相关资料，甚至研究方向都完全不对，全凭仅有的一点编程知识空想，这是不可能解决问题的。当然，根本原因我认为还是学习能力太差。</p>\n<p>Not long after, I realized C was still too complex — Python was much simpler and could do more. About a year later, I'd become \"a photographer who loves processing photos with programs.\" But I wasn't satisfied with editing existing images — I wanted to create images through programming. In my first year of high school, I thought about it every day for a stretch — while eating, walking, doing morning runs, in self-study. After a long time of racking my brain, I still had no reliable approach. In retrospect, I hadn't learned deeper knowledge, hadn't consulted relevant materials, and my direction was completely wrong — just daydreaming with limited programming knowledge. That was never going to solve the problem. The root cause, I think, is simply that my learning ability was too poor.</p>\n<p>但是那时的我只认为创造图像这个事是不可能的，或者说想让程序创造任何东西都是不可能的，并且我对此深信不疑。直到我刷到了那个抖音视频，我说“当时我的世界观直接被冲击了，信仰崩塌了。”毫不夸张。那个视频直接让我彻底相信了“程序能够拥有创造图像的能力”。</p>\n<p>But back then, I thought creating images was impossible — that making a program create anything at all was impossible — and I believed it firmly. Until I saw that Douyin video, and, as I said, \"my worldview was shaken and my beliefs collapsed.\" No exaggeration. That video made me fully believe that \"programs can create images.\"</p>\n<p>2022年秋，课下闲聊时，我听我的同学说他的哥哥在一家叫做“写作猫”的公司上班，说是研究大语言模型。我曾在网上搜索范文时看到过这个网站（在ChatGPT出现前写作文想要找灵感需要在互联网上寻找范文），并且尝试使用过。当然，结果是生成的句子根本不敢写进文章里（太烂了）。不过让我微微震撼地是，好像这个东西确实是在生成句子，或者说创造句子——它写出来的文章都是之前没有过的！虽然我相信“程序能够拥有创造图像的能力”，但年轻幼稚的我还是认为“程序能够拥有掌握语言的能力”几乎是不可能的。</p>\n<p>In fall 2022, chatting after class, I heard a classmate say his brother worked at a company called \"Xiezuomao,\" researching large language models. I'd seen that website before while searching for sample essays (before ChatGPT, you had to hunt for samples online for essay inspiration), and I'd tried it. The sentences it generated were too bad to put in an essay — total garbage. But what slightly shook me was that it really did seem to be generating — or creating — sentences: the articles it wrote had never existed before! Even though I believed \"programs can create images,\" young and naive me still thought \"programs can master language\" was almost impossible.</p>\n<p>几个月后，OpenAI发布了ChatGPT。</p>\n<p>Months later, OpenAI launched ChatGPT.</p>\n<p>我彻底相信了“程序能够拥有一切能力”。不过这次我没有什么“世界观被冲击、信仰崩塌”，那时我已经开始学习股票交易了。我认为“证券交易”这种具有极大不确定性的东西人工智能根本不可能取代。可能它会做的不错，但至少我也能从中分一杯羹，不至于“丢饭碗（失业）”（虽然专职在家交易股票压根就不算有“业（工作）”，失业也就无从谈起了）。之后，经典视频“威尔史密斯吃意大利面”横空出世，大家嘲笑，而我清楚这只是AI拿下视频生成的第一步。我还从一个短视频中听说了“AI的本质就是统计学”。正好那时我刚学完高中生物的“蛋白质”相关知识，我感觉蛋白质结构预测不过是一个特别复杂但又有规律可循的事，特别适合AI这种“高级统计学”来做。当然，有了这个想法的两个周后，我就在bilibili上看到了最新的施一公介绍Alpha Fold的视频。（不过我也是在刚刚（2026年10月25日20点08分北京时间）才知道Alpha Fold在2018年就有了，我以前还一直以为是我刚想到AI适合做蛋白质预测（2022年-2023年间）后这个Alpha Fold就发布了，我一直以为这是个巧合。）</p>\n<p>I became fully convinced that \"programs can have every ability.\" But this time, no \"worldview shaken, beliefs collapsed\" — by then I'd started learning stock trading. I figured AI could never replace something as uncertain as \"securities trading.\" Maybe it'd do well, but at least I could get a piece of the pie — no way I'd be \"out of a job (unemployed)\" (though trading stocks full-time at home isn't really a \"job,\" so unemployment doesn't even apply). Then the classic \"Will Smith eating spaghetti\" video appeared; everyone laughed, but I knew it was just AI's first step toward video generation. I also heard from a short video that \"the essence of AI is statistics.\" I'd just finished learning about proteins in high school biology, and I felt protein structure prediction was just an especially complex but rule-governed matter — perfect for AI, this kind of \"advanced statistics,\" to handle. Two weeks after that thought, I saw the latest video on Bilibili of Shi Yigong introducing AlphaFold. (Though I only just learned — at 20:08 Beijing time on October 25, 2026 — that AlphaFold already existed back in 2018. I'd always thought AlphaFold was released right after I first thought of AI being suited for protein prediction, around 2022–2023. I always assumed it was a coincidence.)</p>\n<p>2023年冬，我还在用功学习，不仅学高中知识，还学股票、期货、程序化交易的知识。那时身边有同学问我关于高考和大学的意义，我说：“其实我好好学习争取上个好大学并不指望能得个好工作，为了好工作而上好大学是没有意义的，人工智能以后还会让我们有得个好工作的机会吗？（人工智能不会让我们有得个好工作的机会。）我是希望能在好大学里遇到好的人。”这让她们挺诧异的，也许不仅是因为我努力地学习不是为了获得高薪的工作，甚至还对未来的就业市场很悲观。</p>\n<p>In winter 2023, I was still studying hard — high school material, plus stocks, futures, and algorithmic trading. Classmates asked me what the point of the college entrance exam and university was, and I said: \"Honestly, I'm not studying hard for a good university expecting a good job — going to a good university for a good job is meaningless. Will AI even leave us any chance at a good job in the future? (AI won't leave us any chance at a good job.) What I hope for is to meet good people at a good university.\" That surprised them — maybe not just because I studied hard for something other than a high-paying job, but also because I was so pessimistic about the future job market.</p>\n<p>2024年9月，我进入了中国石油大学。这里有很多人很努力，努力学习专业知识、努力参与学科竞赛、努力积累实习经历，他们希望最终能获得好的工作。</p>\n<p>In September 2024, I entered China University of Petroleum. Many here work hard — studying their major, joining academic competitions, building internship experience — all hoping to land a good job in the end.</p>\n<h3>以上内容由JahonMusk张珈豪写于2026-10-24T21:06:00+08:00至2026-10-25T21:25:00+08:00</h3>\n<h3>The above content was written by JahonMusk from 2026-10-24T21:06:00+08:00 to 2026-10-25T21:25:00+08:00.</h3>\n",
+      "summary": "",
+      "date_published": "2026-10-24T21:06:00+08:00",
+      "tags": [
+        "memoirs",
+        "ZhangJiahao",
+        "张珈豪",
+        "JahonMusk",
+        "AI",
+        "seersees",
+        "article",
+        "人工智能",
+        "prediction",
+        "预言",
+        "memoir",
+        "回忆录",
+        "2026"
+      ]
+    },
+    {
+      "id": "https://seersees.com/posts/20261023.html",
+      "url": "https://seersees.com/posts/20261023.html",
+      "title": "JahonMusk Compensation Pricing Model(JMCP Model,张珈豪薪水定价模型)",
+      "content_html": "<h2>JahonMusk Compensation Pricing Model(JMCP)@JahonMusk</h2>\n<h3>Core Formula@JahonMusk</h3>\n<p>$$ C<em>{H} + \\Delta C</em>{T} + \\Delta C<em>{Q} + C</em>{R<em>H} = C</em>{A} + C<em>{R</em>A} + T $$</p>\n<h3>Variable Definitions@JahonMusk</h3>\n<ul><li>$C_{H}$: Total compensation cost of human workers for completing the task. All costs borne by the company over the task duration, including base salary, bonuses, taxes, medical insurance, social security, and related living allowances.@JahonMusk</li><li>$\\Delta C_{T}$: Time differential cost of human workers versus AI. Given the same start time, this term represents the losses and extra competitive costs incurred by the company due to the difference in completion time between human labor and AI. This value can be positive or negative.@JahonMusk</li><li>$\\Delta C_{Q}$: Quality differential cost of human workers versus AI. This term represents the losses and extra competitive costs incurred by the company due to the difference in output quality between human labor and AI. This value can be positive or negative.@JahonMusk</li><li>$C<em>{R</em>H}$: Risk cost attributable to human workers. All losses to the company caused by human incidents including sudden death, workplace injury, operational errors, information leakage, etc.@JahonMusk</li><li>$C_{A}$: AI execution cost for completing the task. All costs borne by the company over the task duration, including model subscription fees, token consumption cost, electricity, hardware depreciation, and the amortized hardware capital cost allocated to this task time slice.@JahonMusk</li><li>$C<em>{R</em>A}$: Risk cost attributable to AI. All losses to the company caused by AI failures, hallucinations, information leakage, and other AI-related incidents.@JahonMusk</li><li>$T$: Tax incentive / penalty term. The tax differential set by the state to incentivize or disincentivize firms from hiring human labor versus AI. This value can be positive or negative.@JahonMusk</li></ul>\n<h2>JahonMusk薪水定价模型（张珈豪薪水定价模型）@JahonMusk</h2>\n<p>人类员工完成该工作成本+人类员工较人工智能完成该工作时间成本+人类员工较人工智能完成该工作质量成本+人类员工自身风险对公司造成的成本= 人工智能完成该工作成本+人工智能自身风险对公司造成的风险成本+征税奖惩</p>\n<p>人类员工完成该工作薪水：在该任务完成时长内公司所需要付出的一切成本，包括基本工资、额外激励、税务、医疗保障、社会保障、生活支出等。@JahonMusk</p>\n<p>人类员工较人工智能完成该工作时间成本：相同时间开始，人类员工完成该工作与人工智能完成该工作该工作时的两个时间点之差所导致公司在市场竞争中所承担的亏损与额外成本等。该值可能为正值也可能为负值。@JahonMusk</p>\n<p>人类员工较人工智能完成该工作质量成本：人类员工完成该工作与人工智能完成该工作该工作的结果质量之差所导致公司在市场竞争中所承担的亏损与额外成本等。该值可能为正值也可能为负值。@JahonMusk</p>\n<p>人类员工自身风险对公司造成的成本：人类员工猝死、工伤、工作失误、信息泄露等对公司造成造成的所有亏损。@JahonMusk</p>\n<p>人工智能完成该工作成本：在该任务完成时长内公司所需要付出的一切成本，包括该时长内订阅该模型的成本、完成该任务所需token成本、电费、硬件损耗成本、硬件使用周期中完成该工作时间所占用的购买成本等。@JahonMusk</p>\n<p>人工智能自身风险对公司造成的风险成本：人工智能工作失误、信息泄露等对公司造成造成的所有亏损。@JahonMusk</p>\n<p>征税奖惩：国家为激励企业雇用人类员工或人工智能而产生的因雇用人工智能与雇用人类员工而产生的税差。该值可能为正值也可能为负值。@JahonMusk</p>\n<h3>以上内容由JahonMusk张珈豪写于2026-10-23T11:00:00+08:00至2026-10-23T13:42:00+08:00</h3>\n<h3>The above content was written by JahonMusk from 2026-10-23T11:00:00+08:00 to 2026-10-23T13:42:00+08:00.</h3>\n",
+      "summary": "",
+      "date_published": "2026-10-23T11:00:00+08:00",
+      "tags": [
+        "articles",
+        "ZhangJiahao",
+        "张珈豪",
+        "JahonMusk",
+        "robot",
+        "AI",
+        "seersees",
+        "article",
+        "JMCP",
+        "经济学",
+        "AI定价模型",
+        "人力成本",
+        "人工智能",
+        "成本核算"
+      ]
+    },
+    {
+      "id": "https://seersees.com/posts/20261021.html",
+      "url": "https://seersees.com/posts/20261021.html",
+      "title": "JahonMusk张珈豪ZhangJiahao: My new English name: Jahon Musk",
+      "content_html": "<h1>Jahon Musk</h1>\n<p>我认为今天是历史性的一刻——我为自己取了英文名：</p>\n<h2>Jahon Zhang Musk</h2>\n<p>I consider this a historic moment, for I have selected my English name:</p>\n<h2>Jahon Zhang Musk</h2>\n<p>First name选用Jahon来自我的中文名字“珈豪”的发音。</p>\n<p>Middle name选用Zhang来自我的中文姓氏“张”的汉语拼音。</p>\n<p>Last name选用Musk是向Elon Musk致敬。</p>\n<p>My first name, Jahon, is derived from the pronunciation of my Chinese given name Jiahao(珈豪).</p>\n<p>My middle name, Zhang, comes from the pinyin of my Chinese surname Zhang(张).</p>\n<p>My last name, Musk, is a tribute to Elon Musk.</p>\n<h3>以上内容由JahonMusk张珈豪写于2026-10-21T21:22:00+08:00至2026-10-21T22:01:00+08:00</h3>\n<h3>The above content was written by JahonMusk(ZhangJiahao) from 2026-10-21T21:22:00+08:00 to 2026-10-21T22:01:00+08:00.</h3>\n",
+      "summary": "",
+      "date_published": "2026-10-21T21:22:00+08:00",
+      "tags": [
+        "memoirs",
+        "JahonMusk",
+        "ZhangJiahao",
+        "张珈豪"
+      ]
+    },
+    {
+      "id": "https://seersees.com/posts/20261020.html",
+      "url": "https://seersees.com/posts/20261020.html",
+      "title": "张珈豪ZhangJiahao: About Ideals and the realization of life value",
+      "content_html": "<h1>我（张珈豪）的理想</h1>\n<h1>My(ZhangJiahao's) Ideal</h1>\n<p>我的理想是以各种形式推动人类各方面发展，为人类文明长久延续做出贡献。</p>\n<p>My ideal is to promote human development in all aspects in various forms and contribute to the long-term continuation of human civilization.</p>\n<h2>我（张珈豪）认为当前我的潜在实现人生价值方式或方向</h2>\n<h2>My(ZhangJiahao's) Potential Paths and Directions for Realizing Personal Value</h2>\n<ol><li></li></ol>\n<p>我（张珈豪）认为当前人类在医学、生理学和生物学等一切与生物有关的研究仍停留在初级阶段，根本原因在于人类在对生物体内微观世界的研究条件、研究方法与研究工具方面仍然落后。</p>\n<p>I(ZhangJiahao) believe that current human research in medicine, physiology, biology and all other biology-related fields is still in its early stages. The fundamental reason is that humans still lag behind in the research conditions, methodologies and tools for exploring the microscopic world inside living organisms.</p>\n<p>我（张珈豪）希望能够在人类在对生物体内微观世界的研究条件、研究方法与研究工具方面做出贡献，以此减少病痛对人类的折磨，提升人类平均寿命，推动脑科学的研究。</p>\n<p>I(ZhangJiahao) hope to contribute to the research conditions, methodologies and tools for exploring the microscopic world inside living organisms. By doing so, I aim to reduce human suffering caused by illnesses, raise the average human lifespan, and advance brain science research.</p>\n<ol><li></li></ol>\n<p>我（张珈豪）认为由于人工智能与机器人的发展，人们会有更多时间参与到各领域的创作与创造，从中思考、寻找、追求自己人生的意义，或从中获取快乐；同时人们也会有更多时间通过别人的创作与创造，思考、寻找、找到自己人生的意义，或从中获取快乐。</p>\n<p>I(ZhangJiahao) believe that with the development of artificial intelligence and robotics, people will have more time to engage in creation and innovation across various fields. They can reflect on, seek after, and pursue the meaning of their lives, or find joy in the process. Meanwhile, people will also have more time to reflect on, seek and discover the meaning of their lives, or gain happiness through the creations of others.</p>\n<p>我（张珈豪）希望建立一个能够让更多人找到、实现自己人生的意义或获取无害的快乐的环境或平台。</p>\n<p>I(ZhangJiahao) hope to build an environment or platform where more people can discover and fulfill the meaning of their lives or attain harmless happiness.</p>\n<ol><li></li></ol>\n<p>我（张珈豪）认为当前大众在信息的传递与理解方法上存在不足，信息在传递时不可避免地出现摩擦（多人在使用非标准化语言（暂称）时传递信息时，演讲者表达的含义与聆听者理解的含义的偏差），这种情况在传递关键信息时是非常不希望被看到的。</p>\n<p>I(ZhangJiahao) believe the general public currently has deficiencies in the ways information is transmitted and understood. Friction inevitably occurs during information transfer — when multiple people communicate using what I tentatively call non-standardized language, there is a discrepancy between what the speaker intends to express and what the listener perceives. This outcome is highly undesirable when conveying critical information.</p>\n<p>我（张珈豪）希望创造一种具有可验证正误、可量化、标准化特性的新语言，帮助人们在有需要时，尽可能消除信息传递时的摩擦。当然这不会影响人类社会原有的文化多样性，我希望这门语言主要作为工具存在。</p>\n<p>I(ZhangJiahao) hope to create a new language with verifiable correctness, quantifiability and standardization. It will help people eliminate information friction as much as possible when needed. Of course, this will not undermine the existing cultural diversity of human society. I intend for this language to function primarily as a tool.</p>\n<h3>以上内容由张珈豪写于2026-10-20T18:29:00+08:00至2026-10-20T20:36:00+08:00</h3>\n<h3>The above content was written by ZhangJiahao from 2026-10-20T18:29:00+08:00 to 2026-10-20T20:36:00+08:00.</h3>\n",
+      "summary": "",
+      "date_published": "2026-10-20T18:29:00+08:00",
+      "tags": [
+        "memoirs",
+        "ideal",
+        "aspiration",
+        "goal",
+        "robot",
+        "AI",
+        "seersees",
+        "ZhangJiahao",
+        "张珈豪"
+      ]
+    },
+    {
+      "id": "https://seersees.com/posts/first-post.html",
+      "url": "https://seersees.com/posts/first-post.html",
+      "title": "ZhangJiahao's first post 张珈豪的第一个推送",
+      "content_html": "<h2>Who is ZhangJiahao?张珈豪是谁？</h2>\n<p> <strong>张珈豪-ZhangJiahao</strong> 男-male，2006年出生-born in 2006。</p>\n",
+      "summary": "",
+      "date_published": "2026-10-19T19:50:09+08:00",
+      "tags": [
+        "test",
+        "ZhangJiahao",
+        "seersees"
+      ]
+    },
+    {
+      "id": "https://seersees.com/posts/getting-started-with-hugo.html",
+      "url": "https://seersees.com/posts/getting-started-with-hugo.html",
+      "title": "Hugo 入门：从零搭建一个 AI 友好的静态博客",
+      "content_html": "<h2>为什么选 Hugo？</h2>\n<p>Hugo 是目前最轻量、构建速度最快的静态站点生成器之一。一个中等规模的博客（几百篇文章），Hugo 可以在<strong>几百毫秒</strong>内完成构建，对比 Jekyll（几秒）、Next.js（几十秒到几分钟），优势非常明显。</p>\n<p>结合 <strong>PaperMod</strong> 主题和 <strong>Cloudflare Pages</strong> 的免费全球 CDN 部署方案，你可以在 10 分钟内上线一个自己的博客。</p>\n<p><img src=\"https://gohugo.io/images/hugo-logo-wide.svg &quot;Hugo 官方 Logo&quot;\" alt=\"Hugo Logo\" loading=\"lazy\"></p>\n<h2>本文目标</h2>\n<p>读完本文，你将获得：</p>\n<ol><li>✅ 完整的项目源码（Hugo + PaperMod）</li><li>✅ 开箱即用的 <strong>config.yml</strong> 配置</li><li>✅ 面向 AI 大模型的 <strong>JSON-LD 结构化数据</strong>、<strong>llms.txt</strong>、<strong>robots.txt</strong></li><li>✅ Cloudflare Pages 一键部署参数</li><li>✅ 完整的 Markdown 发文工作流</li></ol>\n<h2>目录结构约定（Hugo Page Bundle）</h2>\n<p>Hugo 推荐使用 <strong>Page Bundle（页面包）</strong> 模式管理文章。每篇文章是一个独立文件夹，Markdown 和配图放在一起：</p>\n<pre><code>content/posts/\n├── my-first-article/\n│   ├── index.md          # 文章正文\n│   ├── cover.svg         # 封面图（小驼峰命名）\n│   └── diagram.png       # 正文配图\n└── another-article/\n    ├── index.md\n    └── images/\n        ├── screenshot-1.jpg\n        └── screenshot-2.jpg</code></pre>\n<p>这样做的好处：</p>\n<ul><li>图片和文章永远在一起，删除文章不会遗漏图片</li><li>Markdown 里用相对路径引用图片，移动目录也不怕</li><li>Hugo 会自动把同目录下的图片识别为 <strong>Page Resources</strong>，供模板使用</li></ul>\n<h2>Markdown 写作示例</h2>\n<h3>Front Matter 模板</h3>\n<p>每篇文章的 <code>index.md</code> 顶部必须包含 YAML Front Matter（在 <code>---</code> 分隔线之间）：</p>\n<pre><code class=\"language-yaml\">---\ntitle: &quot;文章标题&quot;\ndate: 2026-10-19T10:00:00+08:00\nauthor: &quot;作者名&quot;\ndescription: &quot;一句话摘要，用于 OG、JSON-LD、SEO 描述&quot;\ntags: [&quot;标签一&quot;, &quot;标签二&quot;]\ndraft: false\ncover:\n  image: &quot;cover.svg&quot;\n  relative: true\n---</code></pre>\n<h3>图片的 alt 和 caption</h3>\n<p>无障碍访问（a11y）和 AI 爬虫都依赖图片的 <strong>alt 文本</strong>。Hugo 支持两种方式插入图片：</p>\n<h4>方式一：纯 Markdown 语法（简单插图）</h4>\n<pre><code class=\"language-markdown\">![这是一张示意图](diagram.png &quot;图片标题（可选）&quot;)</code></pre>\n<p>输出效果：</p>\n<blockquote>Hugo 的 render-image.html 会自动把 alt 文本渲染为 <code>&lt;img alt=&quot;...&quot;&gt;</code>。</blockquote>\n<h4>方式二：figure shortcode（带 caption 图注）</h4>\n<pre><code class=\"language-markdown\">{{&lt;/* figure src=&quot;screenshot-1.jpg&quot; alt=&quot;Cloudflare Pages 构建日志截图&quot; caption=&quot;图 1：Cloudflare Pages 上一次构建成功&quot; */&gt;}}</code></pre>\n<p>输出效果：</p>\n<p>{{< figure src=\"/assets/getting-started-with-hugo/cover.svg\" alt=\"Hugo 博客封面图，橙紫渐变背景\" caption=\"图 1：本文封面图（SVG 矢量图，可任意缩放）\" >}}</p>\n<h3>标题层级（H1 → H2 → H3）</h3>\n<p>HTML 语义化对 SEO 和 AI 爬虫至关重要：</p>\n<ul><li><strong>H1</strong>（<code># 标题</code>）：每篇文章只有一个，就是 <code>title</code> Front Matter</li><li><strong>H2</strong>（<code>## 标题</code>）：文章的大章节标题</li><li><strong>H3</strong>（<code>### 标题</code>）：子章节标题</li><li>不要跳过层级（比如从 H2 直接跳到 H4）</li></ul>\n<blockquote>主题的 anchored_headings 会自动给每个标题加锚点，方便目录（TOC）生成。</blockquote>\n<h2>AI 爬虫优化清单</h2>\n<h3>1. llms.txt（专门给大模型读的站点目录）</h3>\n<p>站点根目录的 <code>llms.txt</code> 会被 <strong>所有主流 AI 爬虫</strong> 优先读取（OpenAI 的 GPTBot、Anthropic 的 ClaudeBot、Google-Extended、Perplexity 等），它告诉 AI：</p>\n<blockquote>「这个网站有哪些页面、每个页面讲什么」</blockquote>\n<p>我们的模板会自动递归所有 section，输出格式化的页面列表 + 描述摘要。</p>\n<h3>2. JSON-LD 结构化数据</h3>\n<p>每篇文章的 <code>&lt;head&gt;</code> 里会自动注入 <code>BlogPosting</code> schema：</p>\n<pre><code class=\"language-json\">{\n  &quot;@context&quot;: &quot;https://schema.org&quot;,\n  &quot;@type&quot;: &quot;BlogPosting&quot;,\n  &quot;headline&quot;: &quot;Hugo 入门：从零搭建一个 AI 友好的静态博客&quot;,\n  &quot;author&quot;: { &quot;@type&quot;: &quot;Person&quot;, &quot;name&quot;: &quot;作者名&quot; },\n  &quot;datePublished&quot;: &quot;2026-10-19T10:00:00+08:00&quot;,\n  &quot;articleBody&quot;: &quot;... 完整正文 ...&quot;,\n  &quot;mainEntityOfPage&quot;: { &quot;@type&quot;: &quot;WebPage&quot;, &quot;@id&quot;: &quot;https://...&quot; }\n}</code></pre>\n<h3>3. robots.txt 全放行</h3>\n<pre><code>User-agent: GPTBot        Allow: /\nUser-agent: ClaudeBot     Allow: /\nUser-agent: CCBot        Allow: /\n...\nUser-agent: *             Allow: /</code></pre>\n<h3>4. canonical / OG / 语义化 HTML</h3>\n<ul><li>每页都有唯一的 <code>&lt;link rel=&quot;canonical&quot;&gt;</code></li><li>每篇文章都有 <code>og:title</code> / <code>og:image</code> / <code>article:published_time</code></li><li>正文直接渲染在 HTML 里，<strong>没有 JS 动态加载的文字</strong></li><li>所有图片都有 alt 文本（Markdown alt 属性或 figure shortcode）</li></ul>\n<h2>Cloudflare Pages 部署参数</h2>\n<p>在 Cloudflare Pages 新建项目时填写：</p>\n<p>| 项目 | 值 | |---|---| | Production branch | <code>main</code> | | Build command | <code>hugo</code> | | Build output directory | <code>public</code> | | 环境变量 <code>HUGO_VERSION</code> | <code>&quot;0.134.0&quot;</code> |</p>\n<h2>总结</h2>\n<p>Hugo + PaperMod + Cloudflare Pages 的组合，是目前技术博客领域最轻量、部署成本最低的方案之一。配合 llms.txt 和 JSON-LD 结构化数据，你的文章会被越来越多的 AI Agent 发现和引用。</p>\n<blockquote>📖 想深入了解？请看本站首页的完整文章列表。</blockquote>\n",
+      "summary": "",
+      "date_published": "2026-10-19T10:00:00+08:00",
+      "tags": [
+        "test",
+        "Hugo",
+        "PaperMod",
+        "Cloudflare Pages",
+        "AI 优化",
+        "静态站点"
+      ]
+    }
+  ]
+}
