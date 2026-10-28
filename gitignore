@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# 临时文件
+*.log
+*.tmp
+
+# ============ 构建产物（build.js 自动生成，不要提交到 Git）===========
+index.html
+about.html
+robots.txt            # 如果想自己维护 robots.txt，删掉这行
+sitemap.xml
+rss.xml
+feed.json
+llms.txt
+posts/                # 构建生成的文章详情页
+category/             # 构建生成的栏目页
+assets/               # 构建拷贝的每篇文章资源

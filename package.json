@@ -1,0 +1,20 @@
+{
+  "name": "my-static-blog",
+  "private": true,
+  "version": "1.0.0",
+  "description": "纯静态个人站点 - 零依赖 Node.js 构建脚本",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "devDependencies": {},
+  "cloudflare": {
+    "pages": {
+      "buildCommand": "node build.js",
+      "outputDirectory": "."
+    }
+  }
+}
