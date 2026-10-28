@@ -8,7 +8,6 @@ JahonMusk张珈豪's predictions,articles,memoirs
 
 ## Categories
 
-- [test](https://seersees.com/category/test.html) — test
 - [memoirs](https://seersees.com/category/memoirs.html) — memoirs
 - [articles](https://seersees.com/category/articles.html) — articles
 

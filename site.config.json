@@ -14,10 +14,6 @@
       "href": "/"
     },
     {
-      "label": "test",
-      "href": "/category/test.html"
-    },
-    {
       "label": "articles",
       "href": "/category/articles.html"
     },
@@ -31,11 +27,6 @@
     }
   ],
   "categories": [
-    {
-      "slug": "test",
-      "name": "test",
-      "description": "test"
-    },
     {
       "slug": "memoirs",
       "name": "memoirs",

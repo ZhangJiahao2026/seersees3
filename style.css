@@ -239,8 +239,8 @@ main { padding: 2rem 0 3rem; }
   color: var(--muted);
   font-size: 0.85rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  flex-direction: column; /* 从上到下排 */
+  gap: 0.4rem;
 }
 
 .article-item .summary {
