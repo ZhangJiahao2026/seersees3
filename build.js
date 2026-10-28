@@ -707,15 +707,16 @@ function buildIndex(config, posts) {
     const list = byCat[cat.slug] || [];
     if (list.length === 0) return '';
     const itemsHtml = list.map(p => {
-      const tags = p.tags.length ? `<span class="tags">${p.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</span>` : '';
+      // 标签单独一组，只生成内部tag，外层不再套 <span class="tags">
+      const tagsHtml = p.tags.length ? p.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('') : '';
       return `      <li class="article-item" data-title="${escapeHtml(p.title.toLowerCase())}" data-tags="${escapeHtml(p.tags.join(' ').toLowerCase())}">
         <a class="article-link" href="${p.relUrl}">${escapeHtml(p.title)}</a>
-        <div class="meta">
-          <time datetime="${p.date}">${formatDate(p.date)}</time>
-          <a href="/category/${cat.slug}.html" rel="tag">${escapeHtml(cat.name)}</a>
-        </div>
+        <time class="date" datetime="${p.date}">${formatDate(p.date)}</time>
         ${p.summary ? `<div class="summary">${escapeHtml(p.summary)}</div>` : ''}
-        ${tags}
+        <div class="tags-line">
+          <a href="/category/${cat.slug}.html" rel="tag">${escapeHtml(cat.name)}</a>
+          ${tagsHtml}
+        </div>
       </li>`;
     }).join('\n');
 
