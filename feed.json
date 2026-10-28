@@ -19,7 +19,8 @@
       "summary": "用 $...$ 写行内公式，$$...$$ 写块级公式。构建脚本自动引入 KaTeX，无需额外步骤。",
       "date_published": "2026-10-28T00:00:00.000Z",
       "tags": [
-        "articles"
+        "articles",
+        "test"
       ]
     },
     {
