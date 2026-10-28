@@ -12,61 +12,6 @@
   ],
   "items": [
     {
-      "id": "https://seersees.com/posts/weekend-notes.html",
-      "url": "https://seersees.com/posts/weekend-notes.html",
-      "title": "周末笔记：一杯咖啡和一个待办",
-      "content_html": "<h2>周六</h2>\n<p>雨下了一整天。</p>\n<p>我泡了一杯手冲，翻完了 SICP 的第一章。距离第一次翻开这本书，已经过去了——不想算了。</p>\n<h2>顺便搭了个站</h2>\n<p>早就想把这些碎碎念和技术笔记放到同一个地方。之前用 Hugo、Hexo、Astro 都搭过，但每次都被\"配置主题\"这件事绊住。</p>\n<p>这一次我放弃了主题，也放弃了评论、搜索、订阅、PWA，统统不要。只要：</p>\n<ul><li>一个<strong>能写字</strong>的地方。</li><li>一个<strong>能被搜索引擎看到</strong>的地方。</li><li>一个<strong>三年后我还能看懂</strong>的地方。</li></ul>\n<h2>今天的待办</h2>\n<ul><li>[x] 搭好构建脚本</li><li>[x] 写 3 篇示例文章</li><li>[x] 加上 RSS / sitemap / llms.txt</li><li>[ ] 下周：把旧文章迁过来</li></ul>\n<p>就这些。周末愉快。</p>\n",
-      "summary": "周六的下午，窗外在下雨。读完了《计算机程序的构造和解释》第一章，顺便把这个站搭完。",
-      "date_published": "2026-10-27T00:00:00.000Z",
-      "tags": [
-        "test",
-        "随笔",
-        "周末",
-        "读书"
-      ]
-    },
-    {
-      "id": "https://seersees.com/posts/static-site.html",
-      "url": "https://seersees.com/posts/static-site.html",
-      "title": "静态站点生成器最小实现",
-      "content_html": "<h2>目标</h2>\n<p>写一个<strong>零依赖</strong>的 <code>build.js</code>，能够：</p>\n<ul><li>解析 Markdown front matter（<code>---</code> 包裹的 YAML 片段）。</li><li>把常用 Markdown 语法渲染成 HTML。</li><li>套上统一的 HTML 模板（包含 SEO / Open Graph / JSON-LD）。</li><li>自动生成首页、栏目页、RSS、sitemap。</li></ul>\n<h2>Front matter 解析</h2>\n<p>用一个简单的正则分割 front matter 和正文：</p>\n<pre><code class=\"language-js\">const fmRe = /^---\\r?\\n([\\s\\S]*?)\\r?\\n---\\r?\\n?/;</code></pre>\n<p>然后逐行解析字段，数组字段（<code>tags</code>）用 <code>[...]</code> 或逗号分隔。</p>\n<h2>Markdown 渲染</h2>\n<p>支持的语法：</p>\n<p>| 语法 | 说明 | |------|------| | <code>#</code> / <code>##</code> / <code>###</code> | 标题 | | <code><strong>bold</strong></code> / <code><em>italic</em></code> | 强调 | | `<code> </code>code<code> </code><code> | 行内代码 | | </code>``<code> </code>`<code>lang </code>``<code> | 代码块 | | </code>- item<code> | 无序列表 | | </code>1. item<code> | 有序列表 | | </code><a href=\"/assets/static-site/url\">text</a><code> | 链接 | | </code><img src=\"/assets/static-site/src\" alt=\"alt\" loading=\"lazy\"><code> | 图片 | | </code>> quote` | 引用 |</p>\n<p>够用就行，不需要把 CommonMark 的每一个角落都实现。</p>\n<h2>模板组合</h2>\n<p>每一页都先调用一个 <code>layout(title, meta, body, config)</code> 函数，统一输出 <code>&lt;!doctype html&gt;</code> 到 <code>&lt;/html&gt;</code>。文章页额外注入 <code>BlogPosting</code> 结构化数据，首页注入 <code>Blog</code>。</p>\n<h2>性能</h2>\n<p>3 篇文章的构建时间在 10ms 以内。即使文章数涨到几百篇，单次构建也不会超过一秒。</p>\n<h2>为什么不引入 marked.js</h2>\n<p>引入之后，构建时间不会显著缩短，但依赖数会变成 1（再加传递依赖），\"复制粘贴就能跑\"这件事就被破坏了。<strong>对一个小站来说，零依赖的可读性比功能完备更重要。</strong></p>\n<p>如果你确实需要更复杂的 Markdown 特性（表格、任务列表、脚注），把 <code>renderMarkdown</code> 函数换成 marked 的调用也只需要改几行。</p>\n",
-      "summary": "不依赖任何第三方包，只用 Node.js 内置模块实现一个 Markdown → HTML 的构建脚本。",
-      "date_published": "2026-10-27T00:00:00.000Z",
-      "tags": [
-        "test",
-        "静态站点",
-        "node",
-        "实现"
-      ]
-    },
-    {
-      "id": "https://seersees.com/posts/image-demo.html",
-      "url": "https://seersees.com/posts/image-demo.html",
-      "title": "图片示例：三种写法都能显示",
-      "content_html": "<h2>封面图（相对路径）</h2>\n<p><img src=\"/assets/image-demo/banner.svg\" alt=\"封面大图\" loading=\"lazy\"></p>\n<blockquote>直接写相对路径 <code>banner.svg</code>，构建脚本会自动规整成 <code>/assets/image-demo/banner.svg</code>（站点根绝对路径），<strong>首页 <code>/</code> 和文章页 <code>/posts/image-demo.html</code> 都能正确加载</strong>，永远不会有相对路径算不准的问题。</blockquote>\n<h2>子目录图片（保留目录结构）</h2>\n<p><img src=\"/assets/image-demo/2026/coffee.svg\" alt=\"一杯咖啡\" loading=\"lazy\"></p>\n<blockquote>子目录路径保留，构建后也是 <code>/assets/image-demo/2026/coffee.svg</code>。 你的资源目录长什么样，站点上就长什么样，一目了然。</blockquote>\n<h2>外链图片</h2>\n<p><img src=\"https://placekitten.com/640/320\" alt=\"在线占位图\" loading=\"lazy\"></p>\n<blockquote>外链 URL 原样保留，不会被改写。</blockquote>\n<h2>图注（figure + figcaption）</h2>\n<p>也可以在 <code>&lt;figure&gt;</code> 里套图片 + <code>&lt;figcaption&gt;</code>，CSS 会自动让它变小变灰：</p>\n<p><figure>   <img src=\"/assets/image-demo/banner.svg\" alt=\"banner\">   <figcaption>这是一行图注。用相对路径 ./banner.svg 也能正常加载。</figcaption> </figure></p>\n",
-      "summary": "演示本地图片、子目录图片、外链图片三种写法，以及 build.js 如何自动规整路径。",
-      "date_published": "2026-10-27T00:00:00.000Z",
-      "tags": [
-        "test",
-        "图片",
-        "教程"
-      ]
-    },
-    {
-      "id": "https://seersees.com/posts/hello-world.html",
-      "url": "https://seersees.com/posts/hello-world.html",
-      "title": "Hello, World —— 我的第一篇文章",
-      "content_html": "<h2>为什么又搭了一个站</h2>\n<p>每隔一段时间，我都会忍不住把博客推倒重来一次。这一次我给自己定了几条简单的规则：</p>\n<ul><li><strong>纯静态 HTML</strong>：不要运行时，不要 Node 服务，不要数据库。</li><li><strong>文章用 Markdown 写</strong>：用 front matter 管元信息，正文就是纯 Markdown。</li><li><strong>首页直接输出所有文章链接</strong>：不依赖 JS 渲染，搜索引擎一进来就能抓全。</li><li><strong>配置集中管理</strong>：站点名、域名、栏目都写在一个 <code>site.config.json</code> 里。</li></ul>\n<h2>核心思路</h2>\n<p>整个站点的构建脚本只有一个文件 <code>build.js</code>，它做三件事：</p>\n<ol><li>读取 <code>site.config.json</code> 和 <code>content/posts/*.md</code>。</li><li>把 Markdown 渲染成 HTML，套上统一的模板。</li><li>顺手生成 <code>sitemap.xml</code>、<code>rss.xml</code>、<code>feed.json</code>、<code>llms.txt</code>。</li></ol>\n<h2>运行方式</h2>\n<pre><code class=\"language-bash\">node build.js</code></pre>\n<p>搞定。新增一篇文章，只要往 <code>content/posts/</code> 里扔一个 <code>.md</code> 文件，再跑一遍 <code>build.js</code> 就行。</p>\n<blockquote>这不是什么复杂的工程，只是把\"写文章\"和\"发布\"之间的摩擦降到最低。</blockquote>\n",
-      "summary": "从零开始搭建这个纯静态站点，聊一聊为什么选择 Markdown + 构建脚本而不是沉重的框架。",
-      "date_published": "2026-10-27T00:00:00.000Z",
-      "tags": [
-        "test",
-        "随笔",
-        "建站",
-        "markdown"
-      ]
-    },
-    {
       "id": "https://seersees.com/posts/20261024.html",
       "url": "https://seersees.com/posts/20261024.html",
       "title": "JahonMusk张珈豪:Most people have always underestimated AI's future power.20261024",
@@ -144,35 +89,6 @@
         "seersees",
         "ZhangJiahao",
         "张珈豪"
-      ]
-    },
-    {
-      "id": "https://seersees.com/posts/first-post.html",
-      "url": "https://seersees.com/posts/first-post.html",
-      "title": "ZhangJiahao's first post 张珈豪的第一个推送",
-      "content_html": "<h2>Who is ZhangJiahao?张珈豪是谁？</h2>\n<p> <strong>张珈豪-ZhangJiahao</strong> 男-male，2006年出生-born in 2006。</p>\n",
-      "summary": "",
-      "date_published": "2026-10-19T19:50:09+08:00",
-      "tags": [
-        "test",
-        "ZhangJiahao",
-        "seersees"
-      ]
-    },
-    {
-      "id": "https://seersees.com/posts/getting-started-with-hugo.html",
-      "url": "https://seersees.com/posts/getting-started-with-hugo.html",
-      "title": "Hugo 入门：从零搭建一个 AI 友好的静态博客",
-      "content_html": "<h2>为什么选 Hugo？</h2>\n<p>Hugo 是目前最轻量、构建速度最快的静态站点生成器之一。一个中等规模的博客（几百篇文章），Hugo 可以在<strong>几百毫秒</strong>内完成构建，对比 Jekyll（几秒）、Next.js（几十秒到几分钟），优势非常明显。</p>\n<p>结合 <strong>PaperMod</strong> 主题和 <strong>Cloudflare Pages</strong> 的免费全球 CDN 部署方案，你可以在 10 分钟内上线一个自己的博客。</p>\n<p><img src=\"https://gohugo.io/images/hugo-logo-wide.svg &quot;Hugo 官方 Logo&quot;\" alt=\"Hugo Logo\" loading=\"lazy\"></p>\n<h2>本文目标</h2>\n<p>读完本文，你将获得：</p>\n<ol><li>✅ 完整的项目源码（Hugo + PaperMod）</li><li>✅ 开箱即用的 <strong>config.yml</strong> 配置</li><li>✅ 面向 AI 大模型的 <strong>JSON-LD 结构化数据</strong>、<strong>llms.txt</strong>、<strong>robots.txt</strong></li><li>✅ Cloudflare Pages 一键部署参数</li><li>✅ 完整的 Markdown 发文工作流</li></ol>\n<h2>目录结构约定（Hugo Page Bundle）</h2>\n<p>Hugo 推荐使用 <strong>Page Bundle（页面包）</strong> 模式管理文章。每篇文章是一个独立文件夹，Markdown 和配图放在一起：</p>\n<pre><code>content/posts/\n├── my-first-article/\n│   ├── index.md          # 文章正文\n│   ├── cover.svg         # 封面图（小驼峰命名）\n│   └── diagram.png       # 正文配图\n└── another-article/\n    ├── index.md\n    └── images/\n        ├── screenshot-1.jpg\n        └── screenshot-2.jpg</code></pre>\n<p>这样做的好处：</p>\n<ul><li>图片和文章永远在一起，删除文章不会遗漏图片</li><li>Markdown 里用相对路径引用图片，移动目录也不怕</li><li>Hugo 会自动把同目录下的图片识别为 <strong>Page Resources</strong>，供模板使用</li></ul>\n<h2>Markdown 写作示例</h2>\n<h3>Front Matter 模板</h3>\n<p>每篇文章的 <code>index.md</code> 顶部必须包含 YAML Front Matter（在 <code>---</code> 分隔线之间）：</p>\n<pre><code class=\"language-yaml\">---\ntitle: &quot;文章标题&quot;\ndate: 2026-10-19T10:00:00+08:00\nauthor: &quot;作者名&quot;\ndescription: &quot;一句话摘要，用于 OG、JSON-LD、SEO 描述&quot;\ntags: [&quot;标签一&quot;, &quot;标签二&quot;]\ndraft: false\ncover:\n  image: &quot;cover.svg&quot;\n  relative: true\n---</code></pre>\n<h3>图片的 alt 和 caption</h3>\n<p>无障碍访问（a11y）和 AI 爬虫都依赖图片的 <strong>alt 文本</strong>。Hugo 支持两种方式插入图片：</p>\n<h4>方式一：纯 Markdown 语法（简单插图）</h4>\n<pre><code class=\"language-markdown\">![这是一张示意图](diagram.png &quot;图片标题（可选）&quot;)</code></pre>\n<p>输出效果：</p>\n<blockquote>Hugo 的 render-image.html 会自动把 alt 文本渲染为 <code>&lt;img alt=&quot;...&quot;&gt;</code>。</blockquote>\n<h4>方式二：figure shortcode（带 caption 图注）</h4>\n<pre><code class=\"language-markdown\">{{&lt;/* figure src=&quot;screenshot-1.jpg&quot; alt=&quot;Cloudflare Pages 构建日志截图&quot; caption=&quot;图 1：Cloudflare Pages 上一次构建成功&quot; */&gt;}}</code></pre>\n<p>输出效果：</p>\n<p>{{< figure src=\"/assets/getting-started-with-hugo/cover.svg\" alt=\"Hugo 博客封面图，橙紫渐变背景\" caption=\"图 1：本文封面图（SVG 矢量图，可任意缩放）\" >}}</p>\n<h3>标题层级（H1 → H2 → H3）</h3>\n<p>HTML 语义化对 SEO 和 AI 爬虫至关重要：</p>\n<ul><li><strong>H1</strong>（<code># 标题</code>）：每篇文章只有一个，就是 <code>title</code> Front Matter</li><li><strong>H2</strong>（<code>## 标题</code>）：文章的大章节标题</li><li><strong>H3</strong>（<code>### 标题</code>）：子章节标题</li><li>不要跳过层级（比如从 H2 直接跳到 H4）</li></ul>\n<blockquote>主题的 anchored_headings 会自动给每个标题加锚点，方便目录（TOC）生成。</blockquote>\n<h2>AI 爬虫优化清单</h2>\n<h3>1. llms.txt（专门给大模型读的站点目录）</h3>\n<p>站点根目录的 <code>llms.txt</code> 会被 <strong>所有主流 AI 爬虫</strong> 优先读取（OpenAI 的 GPTBot、Anthropic 的 ClaudeBot、Google-Extended、Perplexity 等），它告诉 AI：</p>\n<blockquote>「这个网站有哪些页面、每个页面讲什么」</blockquote>\n<p>我们的模板会自动递归所有 section，输出格式化的页面列表 + 描述摘要。</p>\n<h3>2. JSON-LD 结构化数据</h3>\n<p>每篇文章的 <code>&lt;head&gt;</code> 里会自动注入 <code>BlogPosting</code> schema：</p>\n<pre><code class=\"language-json\">{\n  &quot;@context&quot;: &quot;https://schema.org&quot;,\n  &quot;@type&quot;: &quot;BlogPosting&quot;,\n  &quot;headline&quot;: &quot;Hugo 入门：从零搭建一个 AI 友好的静态博客&quot;,\n  &quot;author&quot;: { &quot;@type&quot;: &quot;Person&quot;, &quot;name&quot;: &quot;作者名&quot; },\n  &quot;datePublished&quot;: &quot;2026-10-19T10:00:00+08:00&quot;,\n  &quot;articleBody&quot;: &quot;... 完整正文 ...&quot;,\n  &quot;mainEntityOfPage&quot;: { &quot;@type&quot;: &quot;WebPage&quot;, &quot;@id&quot;: &quot;https://...&quot; }\n}</code></pre>\n<h3>3. robots.txt 全放行</h3>\n<pre><code>User-agent: GPTBot        Allow: /\nUser-agent: ClaudeBot     Allow: /\nUser-agent: CCBot        Allow: /\n...\nUser-agent: *             Allow: /</code></pre>\n<h3>4. canonical / OG / 语义化 HTML</h3>\n<ul><li>每页都有唯一的 <code>&lt;link rel=&quot;canonical&quot;&gt;</code></li><li>每篇文章都有 <code>og:title</code> / <code>og:image</code> / <code>article:published_time</code></li><li>正文直接渲染在 HTML 里，<strong>没有 JS 动态加载的文字</strong></li><li>所有图片都有 alt 文本（Markdown alt 属性或 figure shortcode）</li></ul>\n<h2>Cloudflare Pages 部署参数</h2>\n<p>在 Cloudflare Pages 新建项目时填写：</p>\n<p>| 项目 | 值 | |---|---| | Production branch | <code>main</code> | | Build command | <code>hugo</code> | | Build output directory | <code>public</code> | | 环境变量 <code>HUGO_VERSION</code> | <code>&quot;0.134.0&quot;</code> |</p>\n<h2>总结</h2>\n<p>Hugo + PaperMod + Cloudflare Pages 的组合，是目前技术博客领域最轻量、部署成本最低的方案之一。配合 llms.txt 和 JSON-LD 结构化数据，你的文章会被越来越多的 AI Agent 发现和引用。</p>\n<blockquote>📖 想深入了解？请看本站首页的完整文章列表。</blockquote>\n",
-      "summary": "",
-      "date_published": "2026-10-19T10:00:00+08:00",
-      "tags": [
-        "test",
-        "Hugo",
-        "PaperMod",
-        "Cloudflare Pages",
-        "AI 优化",
-        "静态站点"
       ]
     }
   ]

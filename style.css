@@ -219,12 +219,11 @@ main { padding: 2rem 0 3rem; }
 }
 
 .article-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
   padding: 0.85rem 0;
   border-bottom: 1px solid var(--border);
-  /* 为 JS 过滤预留隐藏状态 */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.3rem;
 }
 .article-item.is-hidden { display: none; }
 
@@ -232,6 +231,7 @@ main { padding: 2rem 0 3rem; }
   color: var(--fg);
   font-weight: 600;
   font-size: 1.05rem;
+  display: block;
 }
 .article-item a.article-link:hover { color: var(--accent); text-decoration: none; }
 
@@ -246,7 +246,6 @@ main { padding: 2rem 0 3rem; }
 .article-item .summary {
   color: var(--muted);
   font-size: 0.9rem;
-  margin-top: 0.25rem;
 }
 
 /* ---------- 文章详情 ---------- */
@@ -370,15 +369,35 @@ main { padding: 2rem 0 3rem; }
   }
 
   .article-item {
-    flex-direction: row;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "title  meta"
+      "summary tags";
+    row-gap: 0.25rem;
+    column-gap: 1.25rem;
     align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
   }
-  .article-item .meta {
-    flex-shrink: 0;
-    min-width: 120px;
-    justify-content: flex-end;
+  .article-item a.article-link { grid-area: title; }
+  .article-item .meta       { grid-area: meta;   justify-content: flex-end; white-space: nowrap; }
+  .article-item .summary    { grid-area: summary; }
+  .article-item .tags       { grid-area: tags;   justify-content: flex-end; }
+
+  /* 没有 summary 时，tags 上提到 title 行右侧 */
+  .article-item:not(:has(.summary)) {
+    grid-template-areas:
+      "title  meta"
+      ".      tags";
+  }
+  .article-item:not(:has(.tags)) {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "title  meta"
+      "summary .";
+  }
+  .article-item:not(:has(.summary)):not(:has(.tags)) {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "title meta";
   }
 }
 

@@ -14,16 +14,10 @@ JahonMusk张珈豪's predictions,articles,memoirs
 
 ## Posts
 
-- [周末笔记：一杯咖啡和一个待办](https://seersees.com/posts/weekend-notes.html) — 2026-10-27 — 周六的下午，窗外在下雨。读完了《计算机程序的构造和解释》第一章，顺便把这个站搭完。
-- [静态站点生成器最小实现](https://seersees.com/posts/static-site.html) — 2026-10-27 — 不依赖任何第三方包，只用 Node.js 内置模块实现一个 Markdown → HTML 的构建脚本。
-- [图片示例：三种写法都能显示](https://seersees.com/posts/image-demo.html) — 2026-10-27 — 演示本地图片、子目录图片、外链图片三种写法，以及 build.js 如何自动规整路径。
-- [Hello, World —— 我的第一篇文章](https://seersees.com/posts/hello-world.html) — 2026-10-27 — 从零开始搭建这个纯静态站点，聊一聊为什么选择 Markdown + 构建脚本而不是沉重的框架。
 - [JahonMusk张珈豪:Most people have always underestimated AI's future power.20261024](https://seersees.com/posts/20261024.html) — 2026-10-24T21:06:00+08:00 — 
 - [JahonMusk Compensation Pricing Model(JMCP Model,张珈豪薪水定价模型)](https://seersees.com/posts/20261023.html) — 2026-10-23T11:00:00+08:00 — 
 - [JahonMusk张珈豪ZhangJiahao: My new English name: Jahon Musk](https://seersees.com/posts/20261021.html) — 2026-10-21T21:22:00+08:00 — 
 - [张珈豪ZhangJiahao: About Ideals and the realization of life value](https://seersees.com/posts/20261020.html) — 2026-10-20T18:29:00+08:00 — 
-- [ZhangJiahao's first post 张珈豪的第一个推送](https://seersees.com/posts/first-post.html) — 2026-10-19T19:50:09+08:00 — 
-- [Hugo 入门：从零搭建一个 AI 友好的静态博客](https://seersees.com/posts/getting-started-with-hugo.html) — 2026-10-19T10:00:00+08:00 — 
 
 ## Feeds
 

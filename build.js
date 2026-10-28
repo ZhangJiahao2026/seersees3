@@ -609,7 +609,7 @@ function buildFooter(config) {
   </footer>`;
 }
 
-function pageShell({ config, activePath, title, description, canonical, body, ogImage, jsonLd, extraHead }) {
+function pageShell({ config, activePath, title, description, canonical, body, ogImage, jsonLd, extraHead, extraBody }) {
   const m = siteMeta(config);
   const fullTitle = title && title !== m.name ? `${title} · ${m.name}` : m.name;
   const desc = description || m.desc;
@@ -655,6 +655,8 @@ function pageShell({ config, activePath, title, description, canonical, body, og
   <link rel="alternate" type="application/rss+xml" title="${escapeHtml(m.name)} RSS" href="${config.feed.rssPath}">
   <link rel="alternate" type="application/feed+json" title="${escapeHtml(m.name)} JSON Feed" href="${config.feed.jsonPath}">
   <link rel="stylesheet" href="/style.css">
+  <!-- KaTeX 数学公式样式（全站引入，tiny CSS） -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
     ${headExtra}
 </head>
 <body>
@@ -663,6 +665,7 @@ ${buildHeader(config, activePath)}
 ${body}
 </main>
 ${buildFooter(config)}
+${extraBody || ''}
 </body>
 </html>`;
 }
@@ -892,6 +895,13 @@ ${navHtml}
   // 合并两个 JSON-LD
   const mergedLd = [breadcrumb, articleLd];
 
+  // KaTeX auto-render：只在文章详情页加载（首页/栏目页通常没数学公式）
+  // 语法约定：$...$ 行内、$$...$$ 块级；支持 \$ 转义字面量 $
+  const katexScript = `
+  <!-- KaTeX auto-render 数学公式自动扫描渲染 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7MPPZK+n7U2+jwlII5Vatjr+8V4pZsgwaOs3uGR0sQoMhvrj3HbshVAydFVgwc6" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-hUV2yhElN6C86HYm7nXoKc4kXKQnO/JOqB0OQ3C6cE7hYw9P0jJ9hVhP1GdQpY0Hm" crossorigin="anonymous" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false,strict:false})"></script>`;
+
   return pageShell({
     config,
     activePath: post.relUrl,
@@ -900,6 +910,7 @@ ${navHtml}
     canonical: post.url,
     jsonLd: mergedLd,
     body,
+    extraBody: katexScript,
   });
 }
 
