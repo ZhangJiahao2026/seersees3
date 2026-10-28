@@ -13,6 +13,7 @@ JahonMusk张珈豪's predictions,articles,memoirs
 
 ## Posts
 
+- [测试Markdown 中写数学公式（KaTeX）](https://seersees.com/posts/math-demo.html) — 2026-10-28 — 用 $...$ 写行内公式，$$...$$ 写块级公式。构建脚本自动引入 KaTeX，无需额外步骤。
 - [JahonMusk张珈豪:Most people have always underestimated AI's future power.20261024](https://seersees.com/posts/20261024.html) — 2026-10-24T21:06:00+08:00 — 
 - [JahonMusk Compensation Pricing Model(JMCP Model,张珈豪薪水定价模型)](https://seersees.com/posts/20261023.html) — 2026-10-23T11:00:00+08:00 — 
 - [JahonMusk张珈豪ZhangJiahao: My new English name: Jahon Musk](https://seersees.com/posts/20261021.html) — 2026-10-21T21:22:00+08:00 — 
