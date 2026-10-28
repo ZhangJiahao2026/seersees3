@@ -723,9 +723,23 @@ def deploy(
     # 尝试 push
     cprint(f"→ git push -u {remote} {branch}", "cyan")
     try:
+        # 关键：设置 GIT_SSH_COMMAND 让 SSH 自动接受新主机指纹
+        # （解决 Windows subprocess 非交互式 stdin 下无法输入 yes 的经典问题）
+        # StrictHostKeyChecking=accept-new 是 OpenSSH 7.6+ 的安全选项：
+        #   只对首次出现的主机自动接受，之后仍然校验指纹，不会跳过安全检查
+        env = os.environ.copy()
+        existing = env.get("GIT_SSH_COMMAND", "")
+        accept_new = "ssh -o StrictHostKeyChecking=accept-new"
+        # 如果用户已经自定义了 GIT_SSH_COMMAND，只补上 StrictHostKeyChecking
+        if existing and "StrictHostKeyChecking" not in existing:
+            env["GIT_SSH_COMMAND"] = existing + " -o StrictHostKeyChecking=accept-new"
+        elif not existing:
+            env["GIT_SSH_COMMAND"] = accept_new
+
         subprocess.run(
             ["git", "push", "-u", remote, branch],
             cwd=str(blog_dir), shell=False, check=True,
+            env=env,
         )
         cprint(f"[ok] 已推送到 {remote}/{branch}", "green")
     except subprocess.CalledProcessError:
