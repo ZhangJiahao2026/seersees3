@@ -220,37 +220,40 @@ main { padding: 2rem 0 3rem; }
 .article-item {
   padding: 0.85rem 0;
   border-bottom: 1px solid var(--border);
-  /* ✅ 强制条目内部垂直排列 */
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 .article-item.is-hidden { display: none; }
 
-/* ✅ 标题强制独占一整行，不跟后面标签同行 */
+/* 文章标题 */
 .article-item a.article-link {
   color: var(--fg);
   font-weight: 600;
   font-size: 1.05rem;
-  display: block !important;
-  width: 100%;
+  display: block;
 }
 .article-item a.article-link:hover { color: var(--accent); text-decoration: none; }
 
-/* ✅ meta区域（日期、标签）单独一行，自动换行 */
-.article-item .meta {
+/* 单独日期行 */
+.article-item .date {
   color: var(--muted);
   font-size: 0.85rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  width: 100%;
 }
 
+/* 摘要 */
 .article-item .summary {
   color: var(--muted);
   font-size: 0.9rem;
-  width: 100%;
+}
+
+/* 标签行：横向排列、自动换行 */
+.article-item .tags {
+  color: var(--muted);
+  font-size: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
 }
 /* ---------- 文章详情 ---------- */
 
