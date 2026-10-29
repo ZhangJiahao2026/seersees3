@@ -691,11 +691,8 @@ function pageShell({ config, activePath, title, description, canonical, body, og
   <link rel="alternate" type="application/rss+xml" title="${escapeHtml(m.name)} RSS" href="${config.feed.rssPath}">
   <link rel="alternate" type="application/feed+json" title="${escapeHtml(m.name)} JSON Feed" href="${config.feed.jsonPath}">
   <link rel="stylesheet" href="/style.css">
-  <!-- KaTeX 数学公式样式：国内 bootcdn 优先，jsdelivr 兜底 -->
-  <!-- 注意：不加 integrity（SRI），因为不同 CDN 的文件可能有细微压缩差异，会导致校验失败被浏览器阻断 -->
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.11/katex.min.css"
-        crossorigin="anonymous"
-        onerror="this.href='https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css'">
+  <!-- KaTeX 数学公式样式（jsdelivr 有国内节点，速度够用；不加 SRI 避免跨 CDN hash 差异被浏览器阻断）-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     ${headExtra}
 </head>
 <body>
@@ -937,58 +934,28 @@ ${navHtml}
 
   // KaTeX auto-render：只在文章详情页加载（首页/栏目页通常没数学公式）
   // 语法约定：$...$ 行内、$$...$$ 块级；支持 \$ 转义字面量 $
-  // CDN 策略：国内 bootcdn 优先，jsdelivr 兜底（双 <script> 顺序加载 + 错误检测）
+  // 说明：只用 jsdelivr（它有北京/上海节点，国内速度够）；不加 SRI 避免 hash 校验问题
   const katexScript = `
   <!-- KaTeX 数学公式自动扫描渲染 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMath()"></script>
   <script>
-  (function() {
-    var loadBoot = document.createElement('script');
-    loadBoot.src = 'https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.11/katex.min.js';
-    loadBoot.onload = function() { loadAuto(); };
-    loadBoot.onerror = function() { loadJsDelivr(); };
-    document.head.appendChild(loadBoot);
-
-    function loadJsDelivr() {
-      var s = document.createElement('script');
-      s.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js';
-      s.onload = function() { loadAuto(); };
-      s.onerror = function() { alert('KaTeX 加载失败：数学公式无法渲染。请检查网络连接。'); };
-      document.head.appendChild(s);
+  function renderMath() {
+    if (typeof renderMathInElement !== 'function') {
+      console.warn('KaTeX auto-render 未加载成功');
+      return;
     }
-
-    function loadAuto() {
-      var auto = document.createElement('script');
-      auto.src = 'https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js';
-      auto.onload = function() { render(); };
-      auto.onerror = function() {
-        var f = document.createElement('script');
-        f.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js';
-        f.onload = function() { render(); };
-        document.head.appendChild(f);
-      };
-      document.head.appendChild(auto);
-    }
-
-    function render() {
-      try {
-        renderMathInElement(document.body, {
-          delimiters: [
-            { left: '$$', right: '$$', display: true },
-            { left: '$',  right: '$',  display: false }
-          ],
-          throwOnError: false,
-          strict: false,
-          // 信任所有公式源码（即使写在 code/textarea 里也渲染）
-          // 这对 Markdown 示例文档很有用
-          trust: true,
-          // 跳过 <script> <noscript> <style> 里的内容（默认行为，正确）
-          ignoredTags: ['script', 'noscript', 'style', 'textarea']
-        });
-      } catch (e) {
-        console.warn('KaTeX 渲染出错:', e);
-      }
-    }
-  })();
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$',  right: '$',  display: false }
+      ],
+      throwOnError: false,
+      strict: false,
+      trust: true,
+      ignoredTags: ['script', 'noscript', 'style', 'textarea']
+    });
+  }
   </script>`;
 
   return pageShell({

@@ -9,11 +9,8 @@
   <link rel="alternate" type="application/rss+xml" title="JahonMusk张珈豪-seersees先知先觉网 RSS" href="/rss.xml">
   <link rel="alternate" type="application/feed+json" title="JahonMusk张珈豪-seersees先知先觉网 JSON Feed" href="/feed.json">
   <link rel="stylesheet" href="/style.css">
-  <!-- KaTeX 数学公式样式：国内 bootcdn 优先，jsdelivr 兜底 -->
-  <!-- 注意：不加 integrity（SRI），因为不同 CDN 的文件可能有细微压缩差异，会导致校验失败被浏览器阻断 -->
-  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.11/katex.min.css"
-        crossorigin="anonymous"
-        onerror="this.href='https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css'">
+  <!-- KaTeX 数学公式样式（jsdelivr 有国内节点，速度够用；不加 SRI 避免跨 CDN hash 差异被浏览器阻断）-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     <meta name="description" content="关于JahonMusk张珈豪-seersees先知先觉网">
     <link rel="canonical" href="https://seersees.com/about.html">
     <meta property="og:site_name" content="JahonMusk张珈豪-seersees先知先觉网">
