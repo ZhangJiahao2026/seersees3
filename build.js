@@ -140,10 +140,46 @@ function parseSimpleYaml(src) {
 
 // ---------- 3. 渲染 Markdown ----------
 
+// 保护 $...$ / $$...$$ 数学公式不被 Markdown 斜体粗体规则破坏
+// 用 \x00MK<id>\x00 占位（空字符不会在正常 HTML/Markdown 里出现）
+function protectMath(src) {
+  const store = [];
+  const marker = (id) => `\x00MK${id}\x00`;
+
+  // 先匹配块级 $$...$$（可能跨行，直到下一个 $$ 出现为止）
+  let s = src.replace(/\$\$([\s\S]*?)\$\$/g, (match) => {
+    store.push(match);
+    return marker(store.length - 1);
+  });
+
+  // 再匹配行内 $...$（同一行内，且不是 $$ 的一部分）
+  // 规则：在非 $$ 环境下，$...$ 配对；$ 前面不能是 \（\$ 是字面量）
+  s = s.replace(/(?<!\\)\$(?!\$)([^$\n]+?)\$/g, (match) => {
+    store.push(match);
+    return marker(store.length - 1);
+  });
+
+  return { s, store };
+}
+function restoreMath(s, store) {
+  let out = s;
+  // 倒序替换，避免前面的还原影响后面的占位符
+  for (let i = store.length - 1; i >= 0; i--) {
+    out = out.split(`\x00MK${i}\x00`).join(store[i]);
+  }
+  // 还原转义的字面量 \$ → $
+  out = out.replace(/\\\$/g, '$');
+  return out;
+}
+
 // 轻量 Markdown → HTML（块级 + 行内）
 // articleAssetsSiteDir: 当前文章的资源在站点根的路径，如 "/assets/hello-world"
 function renderMarkdown(src, articleAssetsSiteDir) {
-  const text = src.replace(/\r\n/g, '\n');
+  // ⚠️ 关键：在任何 Markdown 解析之前，先保护所有数学公式
+  // （公式里有大量 _ * 等字符，会被 Markdown 误解析成斜体粗体）
+  const { s: protectedSrc, store } = protectMath(src);
+
+  const text = protectedSrc.replace(/\r\n/g, '\n');
   const lines = text.split('\n');
   let out = '';
   let i = 0;
@@ -223,11 +259,11 @@ function renderMarkdown(src, articleAssetsSiteDir) {
     out += `<p>${renderInline(buf.join(' '), articleAssetsSiteDir)}</p>\n`;
   }
   // 兜底：渲染后再扫一遍 HTML，规整原生 HTML <img src="..."> / <a href="..."> 的相对路径
-  // （因为 build.js 的 Markdown 解析器只处理 ![alt](url) 和 [text](url) 语法，
-  //   对用户直接写的 <img src="./banner.svg"> 原生 HTML 标签是不管的）
   if (articleAssetsSiteDir) {
     out = normalizeAssetUrlsInHtml(out, articleAssetsSiteDir);
   }
+  // ⚠️ 还原数学公式占位符 → 原始 LaTeX 源码
+  out = restoreMath(out, store);
   return out;
 }
 

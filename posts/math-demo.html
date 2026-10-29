@@ -58,49 +58,79 @@
 <p>质能方程：$E = mc^2$</p>
 <p>二次方程求根公式：$x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}$，其中 $\Delta = b^2 - 4ac$。</p>
 <h2>块级公式：<code>$$...$$</code></h2>
-<p>双 <code>$$</code> 独占一行，居中显示，字号更大。</p>
-<p><strong>高斯积分</strong>：</p>
-<p>$$ \int_{-\infty}^{+\infty} e^{-x^2}\,dx = \sqrt{\pi} $$</p>
-<p><strong>欧拉恒等式</strong>——被誉为"最美的数学公式"：</p>
-<p>$$ e^{i\pi} + 1 = 0 $$</p>
-<p><strong>泰勒展开</strong>：</p>
-<p>$$ f(x) = f(a) + \frac{f'(a)}{1!}(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \cdots $$</p>
-<h2>常用 LaTeX 语法速查</h2>
-<p>| 效果 | 写法 | 示例 | |------|------|------| | 上下标 | <code>x^2</code>, <code>x<em>1</code> | $x^2$, $x</em>1$ | | 组合上下标 | <code>x<em>{ij}</code>, <code>e^{i\pi}</code> | $x</em>{ij}$, $e^{i\pi}$ | | 分数 | <code>\frac{a}{b}</code>, <code>\dfrac{a}{b}</code> | $\frac{a}{b}$, $\dfrac{a}{b}$ | | 根号 | <code>\sqrt{x}</code>, <code>\sqrt[n]{x}</code> | $\sqrt{x}$, $\sqrt[n]{x}$ | | 求和 | <code>\sum<em>{i=1}^{n} i</code> | $\sum</em>{i=1}^{n} i$ | | 积分 | <code>\int<em>{a}^{b} f(x)\,dx</code> | $\int</em>{a}^{b} f(x)\,dx$ | | 乘积 | <code>\prod<em>{i=1}^{n} i</code> | $\prod</em>{i=1}^{n} i$ | | 极限 | <code>\lim<em>{x \to \infty}</code> | $\lim</em>{x \to \infty}$ | | 希腊字母 | <code>\alpha</code>, <code>\beta</code>, <code>\pi</code>, <code>\infty</code> | $\alpha, \beta, \pi, \infty$ | | 运算符 | <code>\pm</code>, <code>\times</code>, <code>\div</code>, <code>\leq</code>, <code>\geq</code> | $\pm, \times, \div, \leq, \geq$ | | 箭头 | <code>\to</code>, <code>\Rightarrow</code>, <code>\leftarrow</code> | $\to, \Rightarrow, \leftarrow$ | | 向量/帽子 | <code>\vec{v}</code>, <code>\hat{x}</code>, <code>\bar{x}</code> | $\vec{v}, \hat{x}, \bar{x}$ | | 省略号 | <code>\cdots</code>, <code>\ldots</code>, <code>\vdots</code> | $\cdots, \ldots, \vdots$ |</p>
-<h2>矩阵</h2>
-<pre><code>$$
-\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}
-\begin{pmatrix} e \\ f \end{pmatrix}
-=
-\begin{pmatrix} ae + bf \\ ce + df \end{pmatrix}
-$$</code></pre>
-<p>渲染为：</p>
-<p>$$ \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} e \\ f \end{pmatrix} = \begin{pmatrix} ae + bf \\ ce + df \end{pmatrix} $$</p>
-<h2>分段函数</h2>
-<pre><code>$$
-f(x) = \begin{cases}
-  x^2 &amp; x \geq 0 \\
-  -x &amp; x &lt; 0
-\end{cases}
-$$</code></pre>
-<p>渲染为：</p>
-<p>$$ f(x) = \begin{cases}   x^2 & x \geq 0 \\   -x & x < 0 \end{cases} $$</p>
-<h2>对齐的多行公式</h2>
-<p>用 <code>aligned</code> 环境让等号对齐：</p>
-<pre><code>$$
-\begin{aligned}
-  (a + b)^2 &amp;= a^2 + 2ab + b^2 \\
-  (a - b)^2 &amp;= a^2 - 2ab + b^2
-\end{aligned}
-$$</code></pre>
-<p>渲染为：</p>
-<p>$$ \begin{aligned}   (a + b)^2 &= a^2 + 2ab + b^2 \\   (a - b)^2 &= a^2 - 2ab + b^2 \end{aligned} $$</p>
-<h2>注意事项</h2>
-<ol><li><strong>转义美元符号</strong>：如果文章里要写货币 <code>$</code>，用 <code>\$</code> 转义。例如 <code>价格是 \$99</code> 渲染为 价格是 $99。</li><li><strong>块级公式独占一行</strong>：<code>$$</code> 前后要空行，不要跟在文字后面。</li><li><strong>LaTeX 写错了怎么办</strong>：不会报错崩溃，KaTeX 会把错误的源码原样显示，方便你排查。</li><li><strong>不支持 AMSTeX 环境</strong>：KaTeX 不支持 <code>\begin{equation}</code>、<code>\begin{align}</code> 等，可以用 <code>aligned</code> 或直接用 <code>$$</code> 包裹多行。</li></ol>
+<p>双 <code>$$` 独占一行，居中显示，字号更大。
+
+**高斯积分**：
+
+$$ \int_{-\infty}^{+\infty} e^{-x^2}\,dx = \sqrt{\pi} $$
+
+**欧拉恒等式**——被誉为"最美的数学公式"：
+
+$$ e^{i\pi} + 1 = 0 $$
+
+**泰勒展开**：
+
+$$ f(x) = f(a) + \frac{f&#39;(a)}{1!}(x - a) + \frac{f&#39;&#39;(a)}{2!}(x - a)^2 + \cdots $$
+
+## 常用 LaTeX 语法速查
+
+| 效果 | 写法 | 示例 |
+|------|------|------|
+| 上下标 | `x^2`, `x_1` | $x^2$, $x_1$ |
+| 组合上下标 | `x_{ij}`, `e^{i\pi}` | $x_{ij}$, $e^{i\pi}$ |
+| 分数 | `\frac{a}{b}`, `\dfrac{a}{b}` | $\frac{a}{b}$, $\dfrac{a}{b}$ |
+| 根号 | `\sqrt{x}`, `\sqrt[n]{x}` | $\sqrt{x}$, $\sqrt[n]{x}$ |
+| 求和 | `\sum_{i=1}^{n} i` | $\sum_{i=1}^{n} i$ |
+| 积分 | `\int_{a}^{b} f(x)\,dx` | $\int_{a}^{b} f(x)\,dx$ |
+| 乘积 | `\prod_{i=1}^{n} i` | $\prod_{i=1}^{n} i$ |
+| 极限 | `\lim_{x \to \infty}` | $\lim_{x \to \infty}$ |
+| 希腊字母 | `\alpha`, `\beta`, `\pi`, `\infty` | $\alpha, \beta, \pi, \infty$ |
+| 运算符 | `\pm`, `\times`, `\div`, `\leq`, `\geq` | $\pm, \times, \div, \leq, \geq$ |
+| 箭头 | `\to`, `\Rightarrow`, `\leftarrow` | $\to, \Rightarrow, \leftarrow$ |
+| 向量/帽子 | `\vec{v}`, `\hat{x}`, `\bar{x}` | $\vec{v}, \hat{x}, \bar{x}$ |
+| 省略号 | `\cdots`, `\ldots`, `\vdots` | $\cdots, \ldots, \vdots$ |
+
+## 矩阵
+
+```
+$$ \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \begin{pmatrix} e \\ f \end{pmatrix} = \begin{pmatrix} ae + bf \\ ce + df \end{pmatrix} $$
+```
+
+渲染为：
+
+$$ \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \begin{pmatrix} e \\ f \end{pmatrix} = \begin{pmatrix} ae + bf \\ ce + df \end{pmatrix} $$
+
+## 分段函数
+
+```
+$$ f(x) = \begin{cases}   x^2 &amp; x \geq 0 \\   -x &amp; x &lt; 0 \end{cases} $$
+```
+
+渲染为：
+
+$$ f(x) = \begin{cases}   x^2 &amp; x \geq 0 \\   -x &amp; x &lt; 0 \end{cases} $$
+
+## 对齐的多行公式
+
+用 `aligned` 环境让等号对齐：
+
+```
+$$ \begin{aligned}   (a + b)^2 &amp;= a^2 + 2ab + b^2 \\   (a - b)^2 &amp;= a^2 - 2ab + b^2 \end{aligned} $$
+```
+
+渲染为：
+
+$$ \begin{aligned}   (a + b)^2 &amp;= a^2 + 2ab + b^2 \\   (a - b)^2 &amp;= a^2 - 2ab + b^2 \end{aligned} $$
+
+## 注意事项
+
+1. **转义美元符号**：如果文章里要写货币 `$`，用 `$` 转义。例如 `价格是 $99` 渲染为 价格是 $99。
+2. **块级公式独占一行**：`$$</code> 前后要空行，不要跟在文字后面。</p>
+<ol><li><strong>LaTeX 写错了怎么办</strong>：不会报错崩溃，KaTeX 会把错误的源码原样显示，方便你排查。</li><li><strong>不支持 AMSTeX 环境</strong>：KaTeX 不支持 <code>\begin{equation}</code>、<code>\begin{align}</code> 等，可以用 <code>aligned</code> 或直接用 <code>$$</code> 包裹多行。</li></ol>
 
       </div>
     <nav class="article-nav" aria-label="文章导航">
-      <a href="/posts/hello-world.html" rel="prev">← Hello, World —— 我的第一篇文章</a>
+      <a href="/posts/20261024.html" rel="prev">← JahonMusk张珈豪:Most people have always underestimated AI&#39;s future power.20261024</a>
       
     </nav>
     </div>
