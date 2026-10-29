@@ -699,7 +699,7 @@ def deploy(
 
     # 5) git add（逐个路径，避免把不相关的脏文件带进去）
     cprint("→ git add", "cyan")
-    run(["git", "add", *all_changes], cwd=blog_dir)
+    run(["git", "add",  "."], cwd=blog_dir)
 
     # 6) git commit
     msg = _assemble_commit_msg(blog_dir, commit_msg)
