@@ -5,7 +5,7 @@
   <link>https://seersees.com/</link>
   <description>JahonMusk张珈豪&#39;s predictions,articles,memoirs</description>
   <language>zh-CN</language>
-  <lastBuildDate>Wed, 28 Oct 2026 23:29:12 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 29 Oct 2026 03:53:11 GMT</lastBuildDate>
   <item>
     <title>测试Markdown 中写数学公式（KaTeX）</title>
     <link>https://seersees.com/posts/math-demo.html</link>
@@ -13,6 +13,14 @@
     <pubDate>Wed, 28 Oct 2026 00:00:00 GMT</pubDate>
     <category>articles</category>
     <description>用 $...$ 写行内公式，$$...$$ 写块级公式。构建脚本自动引入 KaTeX，无需额外步骤。</description>
+  </item>
+  <item>
+    <title>Hello, World —— 我的第一篇文章</title>
+    <link>https://seersees.com/posts/hello-world.html</link>
+    <guid isPermaLink="true">https://seersees.com/posts/hello-world.html</guid>
+    <pubDate>Tue, 27 Oct 2026 00:00:00 GMT</pubDate>
+    <category>memoirs</category>
+    <description>从零开始搭建这个纯静态站点，聊一聊为什么选择 Markdown + 构建脚本而不是沉重的框架。</description>
   </item>
   <item>
     <title>JahonMusk张珈豪:Most people have always underestimated AI&#39;s future power.20261024</title>

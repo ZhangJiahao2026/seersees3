@@ -9,6 +9,8 @@
   <link rel="alternate" type="application/rss+xml" title="JahonMusk张珈豪-seersees先知先觉网 RSS" href="/rss.xml">
   <link rel="alternate" type="application/feed+json" title="JahonMusk张珈豪-seersees先知先觉网 JSON Feed" href="/feed.json">
   <link rel="stylesheet" href="/style.css">
+  <!-- KaTeX 数学公式样式（全站引入，tiny CSS） -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
     <meta name="description" content="从零开始搭建这个纯静态站点，聊一聊为什么选择 Markdown + 构建脚本而不是沉重的框架。">
     <link rel="canonical" href="https://seersees.com/posts/hello-world.html">
     <meta property="og:site_name" content="JahonMusk张珈豪-seersees先知先觉网">
@@ -20,7 +22,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Hello, World —— 我的第一篇文章">
     <meta name="twitter:description" content="从零开始搭建这个纯静态站点，聊一聊为什么选择 Markdown + 构建脚本而不是沉重的框架。">
-    <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://seersees.com/"},{"@type":"ListItem","position":2,"name":"test","item":"https://seersees.com/category/test.html"},{"@type":"ListItem","position":3,"name":"Hello, World —— 我的第一篇文章","item":"https://seersees.com/posts/hello-world.html"}]},{"@context":"https://schema.org","@type":"BlogPosting","headline":"Hello, World —— 我的第一篇文章","description":"从零开始搭建这个纯静态站点，聊一聊为什么选择 Markdown + 构建脚本而不是沉重的框架。","datePublished":"2026-10-27","dateModified":"2026-10-27","author":{"@type":"Person","name":"JahonMusk张珈豪"},"publisher":{"@type":"Organization","name":"JahonMusk张珈豪-seersees先知先觉网","url":"https://seersees.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://seersees.com/posts/hello-world.html"},"articleSection":"test","keywords":"随笔, 建站, markdown"}]</script>
+    <script type="application/ld+json">[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://seersees.com/"},{"@type":"ListItem","position":2,"name":"memoirs","item":"https://seersees.com/category/memoirs.html"},{"@type":"ListItem","position":3,"name":"Hello, World —— 我的第一篇文章","item":"https://seersees.com/posts/hello-world.html"}]},{"@context":"https://schema.org","@type":"BlogPosting","headline":"Hello, World —— 我的第一篇文章","description":"从零开始搭建这个纯静态站点，聊一聊为什么选择 Markdown + 构建脚本而不是沉重的框架。","datePublished":"2026-10-27","dateModified":"2026-10-27","author":{"@type":"Person","name":"JahonMusk张珈豪"},"publisher":{"@type":"Organization","name":"JahonMusk张珈豪-seersees先知先觉网","url":"https://seersees.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://seersees.com/posts/hello-world.html"},"articleSection":"memoirs","keywords":"随笔, 建站, markdown"}]</script>
 </head>
 <body>
   <header class="site-header">
@@ -28,7 +30,6 @@
       <a class="site-title" href="/">JahonMusk张珈豪-seersees先知先觉网</a>
       <nav class="site-nav" aria-label="主导航">
         <a href="/">首页</a>
-        <a href="/category/test.html">test</a>
         <a href="/category/articles.html">articles</a>
         <a href="/category/memoirs.html">memoirs</a>
         <a href="/about.html">关于</a>
@@ -39,13 +40,13 @@
   <article>
     <div class="container">
       <div class="breadcrumb">
-        <a href="/">首页</a> / <a href="/category/test.html">test</a> / <span>Hello, World —— 我的第一篇文章</span>
+        <a href="/">首页</a> / <a href="/category/memoirs.html">memoirs</a> / <span>Hello, World —— 我的第一篇文章</span>
       </div>
       <header class="article-header">
         <h1 class="page-title">Hello, World —— 我的第一篇文章</h1>
         <div class="meta">
           <time datetime="2026-10-27">2026年10月27日</time>
-          <span>栏目: <a href="/category/test.html">test</a></span>
+          <span>栏目: <a href="/category/memoirs.html">memoirs</a></span>
           <span class="tags"><span class="tag">随笔</span><span class="tag">建站</span><span class="tag">markdown</span></span>
         </div>
       </header>
@@ -64,7 +65,7 @@
       </div>
     <nav class="article-nav" aria-label="文章导航">
       <a href="/posts/20261024.html" rel="prev">← JahonMusk张珈豪:Most people have always underestimated AI&#39;s future power.20261024</a>
-      <a href="/posts/image-demo.html" rel="next">图片示例：三种写法都能显示 →</a>
+      <a href="/posts/math-demo.html" rel="next">测试Markdown 中写数学公式（KaTeX） →</a>
     </nav>
     </div>
   </article>
@@ -80,5 +81,9 @@
       </span>
     </div>
   </footer>
+
+  <!-- KaTeX auto-render 数学公式自动扫描渲染 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7MPPZK+n7U2+jwlII5Vatjr+8V4pZsgwaOs3uGR0sQoMhvrj3HbshVAydFVgwc6" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-hUV2yhElN6C86HYm7nXoKc4kXKQnO/JOqB0OQ3C6cE7hYw9P0jJ9hVhP1GdQpY0Hm" crossorigin="anonymous" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false,strict:false})"></script>
 </body>
 </html>
