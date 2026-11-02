@@ -1,5 +1,5 @@
 ---
-title: "JahonMusk's Microscopic Particle Machine Series Conjecture(MPM Conjecture,张珈豪微观粒子系列机器猜想)"
+title: "JahonMusk's Microscopic Particle Machine Series(MPM,张珈豪微观粒子系列机器)"
 date: 2026-10-29T21:17:00+08:00
 author: "JahonMusk张珈豪"
 description: "JahonMusk张珈豪:The Microscopic Particle Machine Series Is All You Need"
