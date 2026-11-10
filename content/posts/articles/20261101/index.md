@@ -92,7 +92,7 @@ $C_{R_A}$ will fluctuate over time and is difficult to predict.
 
 #### My core conclusion is:
 
-# At least one of $C_{A}$ and $T$ will definitely grow substantially in the future.
+# Among the three — “$C_{A}$ increases,” “$T$ increases,” and “$C_{A}$ decreases” — at least one will occur in the future.
 
 
 
@@ -180,7 +180,7 @@ $C_{R_A}$ 会随着时间推移而波动，且难以预测。
 
 #### 我得出的核心结论是：
 
-# $C_{A}$ 与 $T$ 至少一项，未来一定会大幅增长。
+# “ $C_{A}$ 增长”、“ $T$ 增长”、“ $C_{A}$ 降低”这三项中，未来至少会发生一项。
 
 ### 以上内容由JahonMusk张珈豪写于2026-11-01T16:25:00+08:00至2026-11-02T22:09:00+08:00
 
